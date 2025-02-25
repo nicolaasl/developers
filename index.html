@@ -1,0 +1,1140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>TTB external API documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .php-example code { display: none; }
+                    body .content .bash-example code { display: none; }
+                    body .content .python-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+
+    <script src="js/theme-default-4.40.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;php&quot;,&quot;bash&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="php">php</button>
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="python">python</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-quote-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="quote-endpoints">
+                    <a href="#quote-endpoints">Quote endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-quote-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="quote-endpoints-POSTapi-tpq">
+                                <a href="#quote-endpoints-POSTapi-tpq">POST tpq</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="quote-endpoints-POSTapi-create-quote">
+                                <a href="#quote-endpoints-POSTapi-create-quote">POST create-quote</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="openapi.yaml">View OpenAPI spec</a></li>
+        
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: February 24, 2025</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<aside>
+    <strong>Base URL</strong>: <code>https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/</code>
+</aside>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>To authenticate requests, include a <strong><code>x-api-key</code></strong> header with the value <strong><code>"{YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>Your API key and channel will be provided to you by TTB.</p>
+
+        <h1 id="quote-endpoints">Quote endpoints</h1>
+
+    <p>Endpoints for generating quotes</p>
+
+                                <h2 id="quote-endpoints-POSTapi-tpq">POST tpq</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<aside>Use this endpoint if you have customer and bike information available.</aside>
+<p>The response provides estimated monthly and annual premiums.</p>
+<p>The response contains a &quot;tpq&quot; value which is used to generate the customer redirect URL</p>
+<ul>
+<li>Sundays US Dev: <a href="https://dev-quote.sus.twothreebird.com/ql?tpq=TPQ">https://dev-quote.sus.twothreebird.com/ql?tpq=TPQ</a></li>
+<li>Sundays US Prod: <a href="https://quote.sundaysinsurance.com/ql?tpq=TPQ">https://quote.sundaysinsurance.com/ql?tpq=TPQ</a></li>
+</ul>
+
+<span id="example-requests-POSTapi-tpq">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'x-api-key' =&gt; '{YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'customer' =&gt; [
+                'brand' =&gt; 'Sundays US',
+                'dateOfBirth' =&gt; '1999-12-31',
+                'firstName' =&gt; 'John',
+                'lastName' =&gt; 'Smith',
+                'contactNumber' =&gt; '2124561234',
+                'email' =&gt; 'john.smith.x@test.com',
+                'personalInfoUse' =&gt; true,
+                'state' =&gt; 'NY',
+                'address' =&gt; [
+                    'line1' =&gt; '10 Main Street',
+                    'town' =&gt; 'New York',
+                    'province' =&gt; 'New York',
+                    'postal_code' =&gt; '10044-0049',
+                ],
+            ],
+            'policy' =&gt; [
+                'product' =&gt; 'Sundays US',
+                'policyType' =&gt; 'BC',
+                'channel' =&gt; '{{your channel}',
+                'policyStartDate' =&gt; '2023-02-14',
+                'excess' =&gt; 250,
+                'Insurable' =&gt; [
+                    [
+                        'value' =&gt; '2000',
+                        'type' =&gt; 'Bike',
+                        'bikeType' =&gt; 'Road Bike',
+                        'bikeMake' =&gt; 'Specialized',
+                        'isElectric' =&gt; false,
+                        'bikeModel' =&gt; 'S-Works SL7',
+                        'bikeYear' =&gt; '2018',
+                    ],
+                ],
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq" \
+    --header "x-api-key: {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"customer\": {
+        \"brand\": \"Sundays US\",
+        \"dateOfBirth\": \"1999-12-31\",
+        \"firstName\": \"John\",
+        \"lastName\": \"Smith\",
+        \"contactNumber\": \"2124561234\",
+        \"email\": \"john.smith.x@test.com\",
+        \"personalInfoUse\": true,
+        \"state\": \"NY\",
+        \"address\": {
+            \"line1\": \"10 Main Street\",
+            \"town\": \"New York\",
+            \"province\": \"New York\",
+            \"postal_code\": \"10044-0049\"
+        }
+    },
+    \"policy\": {
+        \"product\": \"Sundays US\",
+        \"policyType\": \"BC\",
+        \"channel\": \"{{your channel}\",
+        \"policyStartDate\": \"2023-02-14\",
+        \"excess\": 250,
+        \"Insurable\": [
+            {
+                \"value\": \"2000\",
+                \"type\": \"Bike\",
+                \"bikeType\": \"Road Bike\",
+                \"bikeMake\": \"Specialized\",
+                \"isElectric\": false,
+                \"bikeModel\": \"S-Works SL7\",
+                \"bikeYear\": \"2018\"
+            }
+        ]
+    }
+}"
+</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq'
+payload = {
+    "customer": {
+        "brand": "Sundays US",
+        "dateOfBirth": "1999-12-31",
+        "firstName": "John",
+        "lastName": "Smith",
+        "contactNumber": "2124561234",
+        "email": "john.smith.x@test.com",
+        "personalInfoUse": true,
+        "state": "NY",
+        "address": {
+            "line1": "10 Main Street",
+            "town": "New York",
+            "province": "New York",
+            "postal_code": "10044-0049"
+        }
+    },
+    "policy": {
+        "product": "Sundays US",
+        "policyType": "BC",
+        "channel": "{{your channel}",
+        "policyStartDate": "2023-02-14",
+        "excess": 250,
+        "Insurable": [
+            {
+                "value": "2000",
+                "type": "Bike",
+                "bikeType": "Road Bike",
+                "bikeMake": "Specialized",
+                "isElectric": false,
+                "bikeModel": "S-Works SL7",
+                "bikeYear": "2018"
+            }
+        ]
+    }
+}
+headers = {
+  'x-api-key': '{YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq"
+);
+
+const headers = {
+    "x-api-key": "{YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "customer": {
+        "brand": "Sundays US",
+        "dateOfBirth": "1999-12-31",
+        "firstName": "John",
+        "lastName": "Smith",
+        "contactNumber": "2124561234",
+        "email": "john.smith.x@test.com",
+        "personalInfoUse": true,
+        "state": "NY",
+        "address": {
+            "line1": "10 Main Street",
+            "town": "New York",
+            "province": "New York",
+            "postal_code": "10044-0049"
+        }
+    },
+    "policy": {
+        "product": "Sundays US",
+        "policyType": "BC",
+        "channel": "{{your channel}",
+        "policyStartDate": "2023-02-14",
+        "excess": 250,
+        "Insurable": [
+            {
+                "value": "2000",
+                "type": "Bike",
+                "bikeType": "Road Bike",
+                "bikeMake": "Specialized",
+                "isElectric": false,
+                "bikeModel": "S-Works SL7",
+                "bikeYear": "2018"
+            }
+        ]
+    }
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-tpq">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;type&quot;: &quot;Policy&quot;,
+        &quot;attributes&quot;: {
+            &quot;annualPremium&quot;: 122,
+            &quot;monthlyPremium&quot;: 11,
+            &quot;tpq&quot;: &quot;4d4f95c11652a0c5d079f157992d03fe47398cc47b42&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-tpq" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-tpq"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-tpq"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-tpq" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-tpq">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-tpq" data-method="POST"
+      data-path="tpq"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-tpq', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>tpq</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>x-api-key</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="x-api-key" class="auth-value"               data-endpoint="POSTapi-tpq"
+               value="{YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-tpq"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-tpq"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>customer</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>brand</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.brand"                data-endpoint="POSTapi-tpq"
+               value="Sundays US"
+               data-component="body">
+    <br>
+<p>The Brand to which the customer belongs. Example: <code>Sundays US</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>dateOfBirth</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.dateOfBirth"                data-endpoint="POSTapi-tpq"
+               value="1999-12-31"
+               data-component="body">
+    <br>
+<p>The customer date of birth in YYYY-MM-DD format. Age must be equal or greater than 18. Example: <code>1999-12-31</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>firstName</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.firstName"                data-endpoint="POSTapi-tpq"
+               value="John"
+               data-component="body">
+    <br>
+<p>The customer's first name. Example: <code>John</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>lastName</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.lastName"                data-endpoint="POSTapi-tpq"
+               value="Smith"
+               data-component="body">
+    <br>
+<p>The customer's last name. Example: <code>Smith</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>contactNumber</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.contactNumber"                data-endpoint="POSTapi-tpq"
+               value="2124561234"
+               data-component="body">
+    <br>
+<p>The customer's contact number. Example: <code>2124561234</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>email</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.email"                data-endpoint="POSTapi-tpq"
+               value="john.smith.x@test.com"
+               data-component="body">
+    <br>
+<p>The customer's email address. Example: <code>john.smith.x@test.com</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>personalInfoUse</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-tpq" style="display: none">
+            <input type="radio" name="customer.personalInfoUse"
+                   value="true"
+                   data-endpoint="POSTapi-tpq"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-tpq" style="display: none">
+            <input type="radio" name="customer.personalInfoUse"
+                   value="false"
+                   data-endpoint="POSTapi-tpq"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Whether the customer has agreed that personal info may be used to contact them regarding their quote. Example: <code>true</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.state"                data-endpoint="POSTapi-tpq"
+               value="NY"
+               data-component="body">
+    <br>
+<p>The customer's 2 letter state (US Only). Example: <code>NY</code></p>
+                    </div>
+                                                                <div style=" margin-left: 14px; clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>line1</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.address.line1"                data-endpoint="POSTapi-tpq"
+               value="10 Main Street"
+               data-component="body">
+    <br>
+<p>The first line of the customer's address. Example: <code>10 Main Street</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>line2</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.address.line2"                data-endpoint="POSTapi-tpq"
+               value=""
+               data-component="body">
+    <br>
+<p>The second line of the customer's address.</p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>town</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.address.town"                data-endpoint="POSTapi-tpq"
+               value="New York"
+               data-component="body">
+    <br>
+<p>The town of the customer's address. Example: <code>New York</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>province</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.address.province"                data-endpoint="POSTapi-tpq"
+               value="New York"
+               data-component="body">
+    <br>
+<p>The province/county/state of the customer's address. Example: <code>New York</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>postal_code</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="customer.address.postal_code"                data-endpoint="POSTapi-tpq"
+               value="10044-0049"
+               data-component="body">
+    <br>
+<p>The postal code of the customer's address. Example: <code>10044-0049</code></p>
+                    </div>
+                                    </details>
+        </div>
+                                        </details>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>policy</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>product</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.product"                data-endpoint="POSTapi-tpq"
+               value="Sundays US"
+               data-component="body">
+    <br>
+<p>The Product to which the policy will belong. Example: <code>Sundays US</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>policyType</code></b>&nbsp;&nbsp;
+<small>in:BC,C,B,V,I</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.policyType"                data-endpoint="POSTapi-tpq"
+               value="BC"
+               data-component="body">
+    <br>
+<p>The policy type (BC: Bicycle &amp; Cyclist, B: Bicycle, C: Cyclist, V: Vehicle, I: Insurer). Example: <code>BC</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.channel"                data-endpoint="POSTapi-tpq"
+               value="{{your channel}"
+               data-component="body">
+    <br>
+<p>Your channel name (provided by TTB). Example: <code>{{your channel}</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>policyStartDate</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.policyStartDate"                data-endpoint="POSTapi-tpq"
+               value="2023-02-14"
+               data-component="body">
+    <br>
+<p>The proposed start date for the policy in YYYY-MM-DD format. Example: <code>2023-02-14</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>excess</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="policy.excess"                data-endpoint="POSTapi-tpq"
+               value="250"
+               data-component="body">
+    <br>
+<p>The excess for the policy. Example: <code>250</code></p>
+                    </div>
+                                                                <div style=" margin-left: 14px; clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>Insurable</code></b>&nbsp;&nbsp;
+<small>object[]</small>&nbsp;
+ &nbsp;
+<br>
+
+            </summary>
+                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
+<small>numeric</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.Insurable.0.value"                data-endpoint="POSTapi-tpq"
+               value="2000"
+               data-component="body">
+    <br>
+<p>The value of the insurable.<ul><li>Bike:<ul><li>Minimum: 300</li><li>Maximum: 21500</li></ul></li><li>Accessories:<ul><li>Minimum:250</li><li>Maximum:1000</li></ul></li></ul> <br />Required when specifying either &quot;Accessories&quot; or &quot;Bike&quot; as type being created. Example: <code>2000</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.Insurable.0.type"                data-endpoint="POSTapi-tpq"
+               value="Bike"
+               data-component="body">
+    <br>
+<p>The type of insurable being added to the policy.<br />Available options: <ul><li>Bike</li><li>Racing</li><li>Worldwide Travel</li><li>Cyclist Legal Cover</li><li>Cyclist Personal Injury</li><li>Accessories</li></ul> Example: <code>Bike</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>bikeType</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.Insurable.0.bikeType"                data-endpoint="POSTapi-tpq"
+               value="Road Bike"
+               data-component="body">
+    <br>
+<p>The bike type.<br />Required when specifying &quot;Bike&quot; as type being created. <br />Available options: <ul><li>Road Bike</li><li>Mountain Bike</li><li>Electric Bicycle</li><li>Cargo E-bike</li><li>Gravel Bike</li><li>Folding Bike</li><li>Hybrid Bike</li><li>BMX</li><li>Track Bike</li></ul> Example: <code>Road Bike</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>bikeMake</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.Insurable.0.bikeMake"                data-endpoint="POSTapi-tpq"
+               value="Specialized"
+               data-component="body">
+    <br>
+<p>The bike make. Example: <code>Specialized</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>isElectric</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-tpq" style="display: none">
+            <input type="radio" name="policy.Insurable.0.isElectric"
+                   value="true"
+                   data-endpoint="POSTapi-tpq"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-tpq" style="display: none">
+            <input type="radio" name="policy.Insurable.0.isElectric"
+                   value="false"
+                   data-endpoint="POSTapi-tpq"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Whether the bike is electric or not. Example: <code>false</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>bikeModel</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.Insurable.0.bikeModel"                data-endpoint="POSTapi-tpq"
+               value="S-Works SL7"
+               data-component="body">
+    <br>
+<p>The bike model. Example: <code>S-Works SL7</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>bikeYear</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.Insurable.0.bikeYear"                data-endpoint="POSTapi-tpq"
+               value="2018"
+               data-component="body">
+    <br>
+<p>The bike year model.<br />Required when specifying &quot;Bike&quot; as type being created. Example: <code>2018</code></p>
+                    </div>
+                                    </details>
+        </div>
+                                        </details>
+        </div>
+        </form>
+
+                    <h2 id="quote-endpoints-POSTapi-create-quote">POST create-quote</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer information.</aside>
+<p>The response provides estimated monthly and annual premiums.</p>
+<p>The response contains a &quot;tpq&quot; value which is used to generate the customer redirect URL</p>
+<ul>
+<li>Sundays US Dev: <a href="https://dev-quote.sus.twothreebird.com/ql?tpq=TPQ">https://dev-quote.sus.twothreebird.com/ql?tpq=TPQ</a></li>
+<li>Sundays US Prod: <a href="https://quote.sundaysinsurance.com/ql?tpq=TPQ">https://quote.sundaysinsurance.com/ql?tpq=TPQ</a></li>
+</ul>
+
+<span id="example-requests-POSTapi-create-quote">
+<blockquote>Example request:</blockquote>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'x-api-key' =&gt; '{YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'policy' =&gt; [
+                'product' =&gt; 'Sundays US',
+                'channel' =&gt; '{{your channel}',
+                'bike' =&gt; [
+                    'value' =&gt; '2000',
+                    'type' =&gt; 'Road Bike',
+                    'make' =&gt; 'Specialized',
+                    'year' =&gt; '2023',
+                    'serial' =&gt; 'XYZ-123',
+                    'model' =&gt; 'S-Works SL7',
+                    'isElectric' =&gt; false,
+                ],
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote" \
+    --header "x-api-key: {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"policy\": {
+        \"product\": \"Sundays US\",
+        \"channel\": \"{{your channel}\",
+        \"bike\": {
+            \"value\": \"2000\",
+            \"type\": \"Road Bike\",
+            \"make\": \"Specialized\",
+            \"year\": \"2023\",
+            \"serial\": \"XYZ-123\",
+            \"model\": \"S-Works SL7\",
+            \"isElectric\": false
+        }
+    }
+}"
+</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote'
+payload = {
+    "policy": {
+        "product": "Sundays US",
+        "channel": "{{your channel}",
+        "bike": {
+            "value": "2000",
+            "type": "Road Bike",
+            "make": "Specialized",
+            "year": "2023",
+            "serial": "XYZ-123",
+            "model": "S-Works SL7",
+            "isElectric": false
+        }
+    }
+}
+headers = {
+  'x-api-key': '{YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote"
+);
+
+const headers = {
+    "x-api-key": "{YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "policy": {
+        "product": "Sundays US",
+        "channel": "{{your channel}",
+        "bike": {
+            "value": "2000",
+            "type": "Road Bike",
+            "make": "Specialized",
+            "year": "2023",
+            "serial": "XYZ-123",
+            "model": "S-Works SL7",
+            "isElectric": false
+        }
+    }
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-create-quote">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;type&quot;: &quot;Policy&quot;,
+        &quot;id&quot;: &quot;431639&quot;,
+        &quot;attributes&quot;: {
+            &quot;annualPremium&quot;: 132,
+            &quot;monthlyPremium&quot;: 11,
+            &quot;tpq&quot;: &quot;7b89e431065741d184fad56af0c1359001e2b896e0fe&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-create-quote" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-create-quote"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-create-quote"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-create-quote" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-create-quote">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-create-quote" data-method="POST"
+      data-path="create-quote"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-create-quote', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>create-quote</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>x-api-key</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="x-api-key" class="auth-value"               data-endpoint="POSTapi-create-quote"
+               value="{YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-create-quote"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-create-quote"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>policy</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+ &nbsp;
+<br>
+<p>Policy object.</p>
+            </summary>
+                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>product</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.product"                data-endpoint="POSTapi-create-quote"
+               value="Sundays US"
+               data-component="body">
+    <br>
+<p>The Product for which you want to generate a quote. Example: <code>Sundays US</code></p>
+                    </div>
+                                                                <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.channel"                data-endpoint="POSTapi-create-quote"
+               value="{{your channel}"
+               data-component="body">
+    <br>
+<p>Your channel name (provided by TTB). Example: <code>{{your channel}</code></p>
+                    </div>
+                                                                <div style=" margin-left: 14px; clear: unset;">
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b style="line-height: 2;"><code>bike</code></b>&nbsp;&nbsp;
+<small>object</small>&nbsp;
+ &nbsp;
+<br>
+<p>Bike object for which you want to generate a quote.</p>
+            </summary>
+                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
+<small>numeric</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.bike.value"                data-endpoint="POSTapi-create-quote"
+               value="2000"
+               data-component="body">
+    <br>
+<p>The value of the insurable.<ul><li>Bike:<ul><li>Minimum: 300</li><li>Maximum: 21500</li></ul></li></ul> Example: <code>2000</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.bike.type"                data-endpoint="POSTapi-create-quote"
+               value="Road Bike"
+               data-component="body">
+    <br>
+<p>The bike type of the insurable.<br />Available options: <ul><li>Road Bike</li><li>Mountain Bike</li><li>Electric Bicycle</li><li>Cargo E-bike</li><li>Gravel Bike</li><li>Folding Bike</li><li>Hybrid Bike</li><li>BMX</li><li>Track Bike</li></ul> Example: <code>Road Bike</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>make</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.bike.make"                data-endpoint="POSTapi-create-quote"
+               value="Specialized"
+               data-component="body">
+    <br>
+<p>The bike make of the insurable. Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>Specialized</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>year</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.bike.year"                data-endpoint="POSTapi-create-quote"
+               value="2023"
+               data-component="body">
+    <br>
+<p>The bike year model of the insurable. Example: <code>2023</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>serial</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.bike.serial"                data-endpoint="POSTapi-create-quote"
+               value="XYZ-123"
+               data-component="body">
+    <br>
+<p>The serial number of the insurable. Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>XYZ-123</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>model</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="policy.bike.model"                data-endpoint="POSTapi-create-quote"
+               value="S-Works SL7"
+               data-component="body">
+    <br>
+<p>The bike model of the insurable. Example: <code>S-Works SL7</code></p>
+                    </div>
+                                                                <div style="margin-left: 28px; clear: unset;">
+                        <b style="line-height: 2;"><code>isElectric</code></b>&nbsp;&nbsp;
+<small>boolean</small>&nbsp;
+<i>optional</i> &nbsp;
+                <label data-endpoint="POSTapi-create-quote" style="display: none">
+            <input type="radio" name="policy.bike.isElectric"
+                   value="true"
+                   data-endpoint="POSTapi-create-quote"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-create-quote" style="display: none">
+            <input type="radio" name="policy.bike.isElectric"
+                   value="false"
+                   data-endpoint="POSTapi-create-quote"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
+    <br>
+<p>Whether the bike is electric or not. Example: <code>false</code></p>
+                    </div>
+                                    </details>
+        </div>
+                                        </details>
+        </div>
+        </form>
+
+            
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="python">python</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>
