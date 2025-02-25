@@ -1,0 +1,128 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/v1\/"
+        }
+    ],
+    "info": {
+        "name": "TTB external API documentation",
+        "_postman_id": "b9f33c54-0b71-42fe-a409-381c1aadd824",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Quote endpoints",
+            "description": "Endpoints for generating quotes",
+            "item": [
+                {
+                    "name": "POST tpq",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/tpq",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/tpq"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"customer\":{\"brand\":\"Sundays US\",\"dateOfBirth\":\"1999-12-31\",\"firstName\":\"John\",\"lastName\":\"Smith\",\"contactNumber\":\"2124561234\",\"email\":\"john.smith.x@test.com\",\"personalInfoUse\":true,\"state\":\"NY\",\"address\":{\"line1\":\"10 Main Street\",\"town\":\"New York\",\"province\":\"New York\",\"postal_code\":\"10044-0049\"}},\"policy\":{\"product\":\"Sundays US\",\"policyType\":\"BC\",\"channel\":\"{{your channel}\",\"policyStartDate\":\"2023-02-14\",\"excess\":250,\"Insurable\":[{\"value\":\"2000\",\"type\":\"Bike\",\"bikeType\":\"Road Bike\",\"bikeMake\":\"Specialized\",\"isElectric\":false,\"bikeModel\":\"S-Works SL7\",\"bikeYear\":\"2018\"}]}}"
+                        },
+                        "description": "<aside>Use this endpoint if you have customer and bike information available.<\/aside>\n\n The response provides estimated monthly and annual premiums.\n\n  The response contains a \"tpq\" value which is used to generate the customer redirect URL\n   * Sundays US Dev: https:\/\/dev-quote.sus.twothreebird.com\/ql?tpq=TPQ\n   * Sundays US Prod: https:\/\/quote.sundaysinsurance.com\/ql?tpq=TPQ"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"type\":\"Policy\",\"attributes\":{\"annualPremium\":122,\"monthlyPremium\":11,\"tpq\":\"4d4f95c11652a0c5d079f157992d03fe47398cc47b42\"}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST create-quote",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/create-quote",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/create-quote"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"policy\":{\"product\":\"Sundays US\",\"channel\":\"{{your channel}\",\"bike\":{\"value\":\"2000\",\"type\":\"Road Bike\",\"make\":\"Specialized\",\"year\":\"2023\",\"serial\":\"XYZ-123\",\"model\":\"S-Works SL7\",\"isElectric\":false}}}"
+                        },
+                        "description": "<aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer information.<\/aside>\nThe response provides estimated monthly and annual premiums.\n\n The response contains a \"tpq\" value which is used to generate the customer redirect URL\n  * Sundays US Dev: https:\/\/dev-quote.sus.twothreebird.com\/ql?tpq=TPQ\n  * Sundays US Prod: https:\/\/quote.sundaysinsurance.com\/ql?tpq=TPQ"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"type\":\"Policy\",\"id\":\"431639\",\"attributes\":{\"annualPremium\":132,\"monthlyPremium\":11,\"tpq\":\"7b89e431065741d184fad56af0c1359001e2b896e0fe\"}}}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "in",
+                "value": "header",
+                "type": "string"
+            },
+            {
+                "key": "key",
+                "value": "x-api-key",
+                "type": "string"
+            }
+        ]
+    }
+}

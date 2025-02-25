@@ -1,0 +1,383 @@
+openapi: 3.0.3
+info:
+  title: 'TTB external API documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1'
+paths:
+  /api/tpq:
+    post:
+      summary: 'POST tpq'
+      operationId: pOSTTpq
+      description: "<aside>Use this endpoint if you have customer and bike information available.</aside>\n\n The response provides estimated monthly and annual premiums.\n\n  The response contains a \"tpq\" value which is used to generate the customer redirect URL\n   * Sundays US Dev: https://dev-quote.sus.twothreebird.com/ql?tpq=TPQ\n   * Sundays US Prod: https://quote.sundaysinsurance.com/ql?tpq=TPQ"
+      parameters:
+        -
+          in: header
+          name: x-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    type: Policy
+                    attributes:
+                      annualPremium: 122
+                      monthlyPremium: 11
+                      tpq: 4d4f95c11652a0c5d079f157992d03fe47398cc47b42
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: Policy
+                      attributes:
+                        type: object
+                        properties:
+                          annualPremium:
+                            type: integer
+                            example: 122
+                          monthlyPremium:
+                            type: integer
+                            example: 11
+                          tpq:
+                            type: string
+                            example: 4d4f95c11652a0c5d079f157992d03fe47398cc47b42
+      tags:
+        - 'Quote endpoints'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer:
+                  type: object
+                  description: ''
+                  example: []
+                  nullable: false
+                  properties:
+                    brand:
+                      type: string
+                      description: 'The Brand to which the customer belongs.'
+                      example: 'Sundays US'
+                      nullable: false
+                    dateOfBirth:
+                      type: string
+                      description: 'The customer date of birth in YYYY-MM-DD format. Age must be equal or greater than 18.'
+                      example: '1999-12-31'
+                      nullable: false
+                    firstName:
+                      type: string
+                      description: "The customer's first name."
+                      example: John
+                      nullable: false
+                    lastName:
+                      type: string
+                      description: "The customer's last name."
+                      example: Smith
+                      nullable: false
+                    contactNumber:
+                      type: string
+                      description: "The customer's contact number."
+                      example: '2124561234'
+                      nullable: false
+                    email:
+                      type: email
+                      description: "The customer's email address."
+                      example: john.smith.x@test.com
+                      nullable: false
+                    personalInfoUse:
+                      type: boolean
+                      description: 'Whether the customer has agreed that personal info may be used to contact them regarding their quote.'
+                      example: true
+                      nullable: false
+                    state:
+                      type: string
+                      description: "The customer's 2 letter state (US Only)."
+                      example: NY
+                      nullable: false
+                    address:
+                      type: object
+                      description: ''
+                      example: []
+                      nullable: false
+                      properties:
+                        line1:
+                          type: string
+                          description: "The first line of the customer's address."
+                          example: '10 Main Street'
+                          nullable: false
+                        line2:
+                          type: string
+                          description: "The second line of the customer's address."
+                          example: null
+                          nullable: false
+                        town:
+                          type: string
+                          description: "The town of the customer's address."
+                          example: 'New York'
+                          nullable: false
+                        province:
+                          type: string
+                          description: "The province/county/state of the customer's address."
+                          example: 'New York'
+                          nullable: false
+                        postal_code:
+                          type: string
+                          description: "The postal code of the customer's address."
+                          example: 10044-0049
+                          nullable: false
+                      required:
+                        - line1
+                        - town
+                        - province
+                        - postal_code
+                  required:
+                    - brand
+                    - dateOfBirth
+                    - firstName
+                    - lastName
+                    - contactNumber
+                    - email
+                    - state
+                    - address
+                policy:
+                  type: object
+                  description: ''
+                  example: []
+                  nullable: false
+                  properties:
+                    product:
+                      type: string
+                      description: 'The Product to which the policy will belong.'
+                      example: 'Sundays US'
+                      nullable: false
+                    policyType:
+                      type: 'in:BC,C,B,V,I'
+                      description: 'The policy type (BC: Bicycle & Cyclist, B: Bicycle, C: Cyclist, V: Vehicle, I: Insurer).'
+                      example: BC
+                      nullable: false
+                    channel:
+                      type: string
+                      description: 'Your channel name (provided by TTB).'
+                      example: '{{your channel}'
+                      nullable: false
+                    policyStartDate:
+                      type: string
+                      description: 'The proposed start date for the policy in YYYY-MM-DD format.'
+                      example: '2023-02-14'
+                      nullable: false
+                    excess:
+                      type: integer
+                      description: 'The excess for the policy.'
+                      example: 250
+                      nullable: false
+                    Insurable:
+                      type: array
+                      description: ''
+                      example:
+                        - []
+                      items:
+                        type: object
+                        properties:
+                          value:
+                            type: numeric
+                            description: 'The value of the insurable.<ul><li>Bike:<ul><li>Minimum: 300</li><li>Maximum: 21500</li></ul></li><li>Accessories:<ul><li>Minimum:250</li><li>Maximum:1000</li></ul></li></ul> <br />Required when specifying either "Accessories" or "Bike" as type being created.'
+                            example: '2000'
+                            nullable: false
+                          type:
+                            type: string
+                            description: 'The type of insurable being added to the policy.<br />Available options: <ul><li>Bike</li><li>Racing</li><li>Worldwide Travel</li><li>Cyclist Legal Cover</li><li>Cyclist Personal Injury</li><li>Accessories</li></ul>'
+                            example: Bike
+                            nullable: false
+                          bikeType:
+                            type: string
+                            description: 'The bike type.<br />Required when specifying "Bike" as type being created. <br />Available options: <ul><li>Road Bike</li><li>Mountain Bike</li><li>Electric Bicycle</li><li>Cargo E-bike</li><li>Gravel Bike</li><li>Folding Bike</li><li>Hybrid Bike</li><li>BMX</li><li>Track Bike</li></ul>'
+                            example: 'Road Bike'
+                            nullable: false
+                          bikeMake:
+                            type: string
+                            description: 'The bike make.'
+                            example: Specialized
+                            nullable: false
+                          isElectric:
+                            type: boolean
+                            description: 'Whether the bike is electric or not.'
+                            example: false
+                            nullable: false
+                          bikeModel:
+                            type: string
+                            description: 'The bike model.'
+                            example: 'S-Works SL7'
+                            nullable: false
+                          bikeYear:
+                            type: string
+                            description: 'The bike year model.<br />Required when specifying "Bike" as type being created.'
+                            example: '2018'
+                            nullable: false
+                        required:
+                          - value
+                          - type
+                  required:
+                    - product
+                    - policyType
+                    - channel
+                    - policyStartDate
+                    - excess
+                    - Insurable
+              required:
+                - customer
+                - policy
+  /api/create-quote:
+    post:
+      summary: 'POST create-quote'
+      operationId: pOSTCreateQuote
+      description: "<aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer information.</aside>\nThe response provides estimated monthly and annual premiums.\n\n The response contains a \"tpq\" value which is used to generate the customer redirect URL\n  * Sundays US Dev: https://dev-quote.sus.twothreebird.com/ql?tpq=TPQ\n  * Sundays US Prod: https://quote.sundaysinsurance.com/ql?tpq=TPQ"
+      parameters:
+        -
+          in: header
+          name: x-api-key
+          description: ''
+          example: '{YOUR_AUTH_KEY}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    type: Policy
+                    id: '431639'
+                    attributes:
+                      annualPremium: 132
+                      monthlyPremium: 11
+                      tpq: 7b89e431065741d184fad56af0c1359001e2b896e0fe
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: Policy
+                      id:
+                        type: string
+                        example: '431639'
+                      attributes:
+                        type: object
+                        properties:
+                          annualPremium:
+                            type: integer
+                            example: 132
+                          monthlyPremium:
+                            type: integer
+                            example: 11
+                          tpq:
+                            type: string
+                            example: 7b89e431065741d184fad56af0c1359001e2b896e0fe
+      tags:
+        - 'Quote endpoints'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                policy:
+                  type: object
+                  description: 'Policy object.'
+                  example: null
+                  nullable: false
+                  properties:
+                    product:
+                      type: string
+                      description: 'The Product for which you want to generate a quote.'
+                      example: 'Sundays US'
+                      nullable: false
+                    channel:
+                      type: string
+                      description: 'Your channel name (provided by TTB).'
+                      example: '{{your channel}'
+                      nullable: false
+                    bike:
+                      type: object
+                      description: 'Bike object for which you want to generate a quote.'
+                      example: null
+                      nullable: false
+                      properties:
+                        value:
+                          type: numeric
+                          description: 'The value of the insurable.<ul><li>Bike:<ul><li>Minimum: 300</li><li>Maximum: 21500</li></ul></li></ul>'
+                          example: '2000'
+                          nullable: false
+                        type:
+                          type: string
+                          description: 'The bike type of the insurable.<br />Available options: <ul><li>Road Bike</li><li>Mountain Bike</li><li>Electric Bicycle</li><li>Cargo E-bike</li><li>Gravel Bike</li><li>Folding Bike</li><li>Hybrid Bike</li><li>BMX</li><li>Track Bike</li></ul>'
+                          example: 'Road Bike'
+                          nullable: false
+                        make:
+                          type: string
+                          description: 'The bike make of the insurable. Must be at least 2 characters. Must not be greater than 50 characters.'
+                          example: Specialized
+                          nullable: false
+                        year:
+                          type: string
+                          description: 'The bike year model of the insurable.'
+                          example: '2023'
+                          nullable: false
+                        serial:
+                          type: string
+                          description: 'The serial number of the insurable. Must be at least 2 characters. Must not be greater than 50 characters.'
+                          example: XYZ-123
+                          nullable: false
+                        model:
+                          type: string
+                          description: 'The bike model of the insurable.'
+                          example: 'S-Works SL7'
+                          nullable: false
+                        isElectric:
+                          type: boolean
+                          description: 'Whether the bike is electric or not.'
+                          example: false
+                          nullable: false
+                      required:
+                        - value
+                        - type
+                        - make
+                        - year
+                  required:
+                    - product
+                    - channel
+                    - bike
+              required:
+                - policy
+tags:
+  -
+    name: 'Quote endpoints'
+    description: 'Endpoints for generating quotes'
+components:
+  securitySchemes:
+    default:
+      type: apiKey
+      name: x-api-key
+      in: header
+      description: 'Your API key and channel will be provided to you by TTB.'
+security:
+  -
+    default: []
