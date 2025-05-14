@@ -5,13 +5,13 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1'
+    url: 'http://{Product & region specific url}'
 paths:
-  /api/tpq:
+  /full-quote:
     post:
-      summary: 'POST tpq'
-      operationId: pOSTTpq
-      description: "<aside>Use this endpoint if you have customer and bike information available.</aside>\n\n The response provides estimated monthly and annual premiums.\n\n  The response contains a \"tpq\" value which is used to generate the customer redirect URL\n   * Sundays US Dev: https://dev-quote.sus.twothreebird.com/ql?tpq=TPQ\n   * Sundays US Prod: https://quote.sundaysinsurance.com/ql?tpq=TPQ"
+      summary: 'POST Full Quote'
+      operationId: pOSTFullQuote
+      description: "<aside>Use this endpoint if you have customer and bike information available.</aside>\n\n The request is made to one of the following URLS:\n\n * Churchill Dev: https://api-ext-dev.twothreebird.com/tpq/churchill/create-quote\n * Churchill Prod: https://api-ext.twothreebird.com/tpq/churchill/create-quote\n * Sundays US Dev: https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq\n * Sundays US Prod: https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/tpq\n * Sundays UK Dev: https://api-ext-dev.twothreebird.com/tpq/sundays-uk/create-quote\n * Sundays UK Prod: https://api-ext.twothreebird.com/tpq/sundays-uk/create-quote\n\n The response provides estimated monthly and annual premiums.\n The response also contains a \"tpq\" value which is used to generate the customer redirect URL. This TPQ is used to generate\n the redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.\n\n * Churchill Dev: https://dev-churchill.dlg.twothreebird.com/tpq/{TPQ}\n * Churchill Prod: https://churchill.dlg.twothreebird.com/tpq/{TPQ}\n * Sundays US Dev: https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ}\n * Sundays US Prod: https://quote.sundaysinsurance.com/ql/tpq/{TPQ}\n * Sundays UK Dev: https://sundays.uk.23bird.dev/quote/tpq/{TPQ}\n * Sundays UK Prod: https://quote.sundaysinsurance.co.uk/quote/tpq/{TPQ}"
       parameters:
         -
           in: header
@@ -31,9 +31,9 @@ paths:
                   data:
                     type: Policy
                     attributes:
-                      annualPremium: 122
-                      monthlyPremium: 11
-                      tpq: 4d4f95c11652a0c5d079f157992d03fe47398cc47b42
+                      annualPremium: 98.64
+                      monthlyPremium: 8.22
+                      tpq: 9abc28f7a9ecb9e195487d70be34f49472c74621d659
                 properties:
                   data:
                     type: object
@@ -45,14 +45,14 @@ paths:
                         type: object
                         properties:
                           annualPremium:
-                            type: integer
-                            example: 122
+                            type: number
+                            example: 98.64
                           monthlyPremium:
-                            type: integer
-                            example: 11
+                            type: number
+                            example: 8.22
                           tpq:
                             type: string
-                            example: 4d4f95c11652a0c5d079f157992d03fe47398cc47b42
+                            example: 9abc28f7a9ecb9e195487d70be34f49472c74621d659
       tags:
         - 'Quote endpoints'
       requestBody:
@@ -70,8 +70,8 @@ paths:
                   properties:
                     brand:
                       type: string
-                      description: 'The Brand to which the customer belongs.'
-                      example: 'Sundays US'
+                      description: 'The Brand to which the customer belongs. Available options: <ul><li>Sundays US</li><li>Sundays UK</li><li>Churchill</li></ul>'
+                      example: 'Sundays UK'
                       nullable: false
                     dateOfBirth:
                       type: string
@@ -101,12 +101,12 @@ paths:
                     personalInfoUse:
                       type: boolean
                       description: 'Whether the customer has agreed that personal info may be used to contact them regarding their quote.'
-                      example: true
+                      example: false
                       nullable: false
                     state:
                       type: string
-                      description: "The customer's 2 letter state (US Only)."
-                      example: NY
+                      description: "The customer's 2 letter state <br />Required when creating quotes for Sundays US."
+                      example: null
                       nullable: false
                     address:
                       type: object
@@ -117,27 +117,27 @@ paths:
                         line1:
                           type: string
                           description: "The first line of the customer's address."
-                          example: '10 Main Street'
+                          example: 'Flat 7'
                           nullable: false
                         line2:
                           type: string
-                          description: "The second line of the customer's address."
-                          example: null
+                          description: "The second line of the customer's address. 25 Church Road"
+                          example: quo
                           nullable: false
                         town:
                           type: string
                           description: "The town of the customer's address."
-                          example: 'New York'
+                          example: London
                           nullable: false
                         province:
                           type: string
                           description: "The province/county/state of the customer's address."
-                          example: 'New York'
+                          example: London
                           nullable: false
                         postal_code:
                           type: string
                           description: "The postal code of the customer's address."
-                          example: 10044-0049
+                          example: 'NW10 9BA'
                           nullable: false
                       required:
                         - line1
@@ -151,7 +151,6 @@ paths:
                     - lastName
                     - contactNumber
                     - email
-                    - state
                     - address
                 policy:
                   type: object
@@ -161,8 +160,8 @@ paths:
                   properties:
                     product:
                       type: string
-                      description: 'The Product to which the policy will belong.'
-                      example: 'Sundays US'
+                      description: 'The Product to which the policy will belong.<br />Available options: <ul><li>Sundays US</li><li>Sundays UK</li><li>Churchill</li></ul>'
+                      example: 'Sundays UK'
                       nullable: false
                     policyType:
                       type: 'in:BC,C,B,V,I'
@@ -172,7 +171,7 @@ paths:
                     channel:
                       type: string
                       description: 'Your channel name (provided by TTB).'
-                      example: '{{your channel}'
+                      example: '{{YOUR_CHANNEL}'
                       nullable: false
                     policyStartDate:
                       type: string
@@ -181,8 +180,8 @@ paths:
                       nullable: false
                     excess:
                       type: integer
-                      description: 'The excess for the policy.'
-                      example: 250
+                      description: 'The excess for the policy. <br />Available options: <ul><li>Sundays US<ul><li>150</li><li>250</li><li>350</li></ul></li><li>Sundays UK:<ul><li>50</li><li>100</li><li>200</li></ul></li></ul>'
+                      example: 200
                       nullable: false
                     Insurable:
                       type: array
@@ -194,17 +193,17 @@ paths:
                         properties:
                           value:
                             type: numeric
-                            description: 'The value of the insurable.<ul><li>Bike:<ul><li>Minimum: 300</li><li>Maximum: 21500</li></ul></li><li>Accessories:<ul><li>Minimum:250</li><li>Maximum:1000</li></ul></li></ul> <br />Required when specifying either "Accessories" or "Bike" as type being created.'
+                            description: 'The value of the insurable.<ul><li>Bike:<ul><li>Sundays UK</li><ul><li>Minimum: 250</li><li>Maximum: 15000</li></ul><li>Sundays US</li><ul><li>Minimum: 300</li><li>Maximum: 21500</li></ul><li>Churchill</li><ul><li>Minimum: 250</li><li>Maximum: 15000</li></ul></ul></li><li>Accessories:<ul><li>Sundays UK</li><ul><li>Minimum: 10</li><li>Maximum: 5000</li></ul><li>Sundays US</li><ul><li>Minimum: 150</li><li>Maximum: 1000</li></ul><li>Churchill</li><ul><li>Minimum: 250</li><li>Maximum: 1000</li></ul></ul></li><li>Wheelset:<ul><li>Sundays UK</li><ul><li>Minimum: 10</li><li>Maximum: 5000</li></ul><li>Sundays US</li><ul><li>Minimum: 150</li><li>Maximum: 5000</li></ul></ul></li></ul> <br />Required when specifying "Accessories", "Bike" or "Wheelset" as type being created.'
                             example: '2000'
                             nullable: false
                           type:
                             type: string
-                            description: 'The type of insurable being added to the policy.<br />Available options: <ul><li>Bike</li><li>Racing</li><li>Worldwide Travel</li><li>Cyclist Legal Cover</li><li>Cyclist Personal Injury</li><li>Accessories</li></ul>'
+                            description: 'The type of insurable being added to the policy.<br /><i>Standard options:</i><ul><li>Accessories</li><li>Bike</li><li>Cyclist Legal Cover</li><li>Racing</li><li>Worldwide travel</li></ul><br /> <i>Sundays UK additional options:</i> <ul><li>Cyclist Racing Cover</li><li>Cyclist Personal Liability</li><li>Wheelset</li></ul> <br /><i>Sundays US additional options:</i><ul><li>Cyclist Personal Injury</li><li>New for Old</li><li>Wheelset</li></ul> <br /><i>Churchill additional options:</i><ul><li>Cyclist Personal Injury</li></ul>'
                             example: Bike
                             nullable: false
                           bikeType:
                             type: string
-                            description: 'The bike type.<br />Required when specifying "Bike" as type being created. <br />Available options: <ul><li>Road Bike</li><li>Mountain Bike</li><li>Electric Bicycle</li><li>Cargo E-bike</li><li>Gravel Bike</li><li>Folding Bike</li><li>Hybrid Bike</li><li>BMX</li><li>Track Bike</li></ul>'
+                            description: 'The bike type.<br />Required when specifying "Bike" as type being created. <br /><i>Standard Options</i><ul><li>Road Bike</li><li>Mountain Bike</li><li>Gravel Bike</li><li>Cargo Bike</li><li>Folding Bike</li><li>BMX</li><li>Track Bike</li><li>Other</li></ul><i>Sundays UK Additional Options:</i><ul><li>City Bike</li><li>Triathlon/Time Trial</li><li>Hybrid Bike</li><li>CycloCross</li><li>Touring Bike</li></ul><i>Sundays US Additional Options:</i><ul><li>Commuter Bike</li><li>Hybrid Bike</li></ul><i>Churchill Additional Options:</i><ul><li>Bespoke</li><li>Commuter Bike</li><li>Cyclocross</li><li>Downhill</li><li>Electric Bike</li><li>Electric Cargo Bike</li><li>Hybrid/City Bike</li><li>Single Speed</li><li>Triathlon/Time Trial</li></ul>'
                             example: 'Road Bike'
                             nullable: false
                           bikeMake:
@@ -215,7 +214,12 @@ paths:
                           isElectric:
                             type: boolean
                             description: 'Whether the bike is electric or not.'
-                            example: false
+                            example: null
+                            nullable: false
+                          storage:
+                            type: string
+                            description: 'Where the bike is stored. <br />Required when specifying "Bike" as type being created and Product is "Churchill" or "Sundays UK". <br />Available options: <ul><li>Inside my property</li><li>Inside my garage</li><li>An outbuilding on my property</li><li>A communal area in my property</li><li>Inside my wooden shed on my property</li><li>Inside my metal shed on my property</li><li>In an off-site bicycle hanger</li><li>Other</li></ul>'
+                            example: Other
                             nullable: false
                           bikeModel:
                             type: string
@@ -240,11 +244,11 @@ paths:
               required:
                 - customer
                 - policy
-  /api/create-quote:
+  /abbreviated-quote:
     post:
-      summary: 'POST create-quote'
-      operationId: pOSTCreateQuote
-      description: "<aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer information.</aside>\nThe response provides estimated monthly and annual premiums.\n\n The response contains a \"tpq\" value which is used to generate the customer redirect URL\n  * Sundays US Dev: https://dev-quote.sus.twothreebird.com/ql?tpq=TPQ\n  * Sundays US Prod: https://quote.sundaysinsurance.com/ql?tpq=TPQ"
+      summary: 'POST Abbreviated Quote'
+      operationId: pOSTAbbreviatedQuote
+      description: "<aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer information.</aside>\nThe response provides estimated monthly and annual premiums.\n\nThe request is made to one of the following URLS:\n  * Sundays US Dev: https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote\n  * Sundays US Prod: https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/create-quote\n\nThe response provides estimated monthly and annual premiums.\nThe response also contains a \"tpq\" value which is used to generate the customer redirect URL. This TPQ is used to generate\nthe redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.\n\n  * Sundays US Dev: https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ}\n  * Sundays US Prod: https://quote.sundaysinsurance.com/ql/tpq/{TPQ}"
       parameters:
         -
           in: header
@@ -263,11 +267,10 @@ paths:
                 example:
                   data:
                     type: Policy
-                    id: '431639'
                     attributes:
                       annualPremium: 132
                       monthlyPremium: 11
-                      tpq: 7b89e431065741d184fad56af0c1359001e2b896e0fe
+                      tpq: 157bb4bfb68ddb5b2ec838db3e329f7781eff02461dc
                 properties:
                   data:
                     type: object
@@ -275,9 +278,6 @@ paths:
                       type:
                         type: string
                         example: Policy
-                      id:
-                        type: string
-                        example: '431639'
                       attributes:
                         type: object
                         properties:
@@ -289,7 +289,7 @@ paths:
                             example: 11
                           tpq:
                             type: string
-                            example: 7b89e431065741d184fad56af0c1359001e2b896e0fe
+                            example: 157bb4bfb68ddb5b2ec838db3e329f7781eff02461dc
       tags:
         - 'Quote endpoints'
       requestBody:
@@ -313,7 +313,7 @@ paths:
                     channel:
                       type: string
                       description: 'Your channel name (provided by TTB).'
-                      example: '{{your channel}'
+                      example: '{{YOUR_CHANNEL}'
                       nullable: false
                     bike:
                       type: object
