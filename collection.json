@@ -1,128 +1,128 @@
 {
-    "variable": [
+  "variable": [
+    {
+      "id": "baseUrl",
+      "key": "baseUrl",
+      "type": "string",
+      "name": "string",
+      "value": "http:\/\/{Product & region specific url}\/"
+    }
+  ],
+  "info": {
+    "name": "TTB external API documentation",
+    "_postman_id": "43cd1ca8-c65b-4fee-940c-d399aa1444b9",
+    "description": "",
+    "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+  },
+  "item": [
+    {
+      "name": "Quote endpoints",
+      "description": "Endpoints for generating quotes",
+      "item": [
         {
-            "id": "baseUrl",
-            "key": "baseUrl",
-            "type": "string",
-            "name": "string",
-            "value": "http:\/\/{Product & region specific url}\/"
-        }
-    ],
-    "info": {
-        "name": "TTB external API documentation",
-        "_postman_id": "43cd1ca8-c65b-4fee-940c-d399aa1444b9",
-        "description": "",
-        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
-    },
-    "item": [
-        {
-            "name": "Quote endpoints",
-            "description": "Endpoints for generating quotes",
-            "item": [
+          "name": "POST Full Quote",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "full-quote",
+              "query": [],
+              "raw": "{{baseUrl}}\/full-quote"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application\/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application\/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"customer\":{\"brand\":\"Sundays UK\",\"dateOfBirth\":\"1999-12-31\",\"firstName\":\"John\",\"lastName\":\"Smith\",\"contactNumber\":\"2124561234\",\"email\":\"john.smith.x@test.com\",\"personalInfoUse\":false,\"address\":{\"line1\":\"Flat 7\",\"line2\":\"quo\",\"town\":\"London\",\"province\":\"London\",\"postal_code\":\"NW10 9BA\"}},\"policy\":{\"product\":\"Sundays UK\",\"policyType\":\"BC\",\"channel\":\"{{YOUR_CHANNEL}\",\"policyStartDate\":\"2023-02-14\",\"excess\":200,\"Insurable\":[{\"value\":\"2000\",\"type\":\"Bike\",\"bikeType\":\"Road Bike\",\"bikeMake\":\"Specialized\",\"storage\":\"Other\",\"bikeModel\":\"S-Works SL7\",\"bikeYear\":\"2018\"}]}}"
+            },
+            "description": "<aside>Use this endpoint if you have customer and bike information available.<\/aside>\n\n The request is made to one of the following URLS:\n\n * Churchill Dev: https:\/\/api-ext-dev.twothreebird.com\/tpq\/churchill\/create-quote\n * Churchill Prod: https:\/\/api-ext.twothreebird.com\/tpq\/churchill\/create-quote\n * Sundays US Dev: https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/v1\/tpq\n * Sundays US Prod: https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/live\/tpq\n * Sundays UK Dev: https:\/\/api-ext-dev.twothreebird.com\/tpq\/sundays-uk\/create-quote\n * Sundays UK Prod: https:\/\/api-ext.twothreebird.com\/tpq\/sundays-uk\/create-quote\n\n The response provides estimated monthly and annual premiums.\n The response also contains a \"tpq\" value which is used to generate the customer redirect URL. This TPQ is used to generate\n the redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.\n\n * Churchill Dev: https:\/\/dev-churchill.dlg.twothreebird.com\/tpq\/{TPQ}\n * Churchill Prod: https:\/\/churchill.dlg.twothreebird.com\/tpq\/{TPQ}\n * Sundays US Dev: https:\/\/dev-quote.sus.twothreebird.com\/ql?tpq={TPQ}\n * Sundays US Prod: https:\/\/quote.sundaysinsurance.com\/ql\/tpq\/{TPQ}\n * Sundays UK Dev: https:\/\/sundays.uk.23bird.dev\/quote\/tpq\/{TPQ}\n * Sundays UK Prod: https:\/\/quote.sundaysinsurance.co.uk\/quote\/tpq\/{TPQ}"
+          },
+          "response": [
+            {
+              "header": [
                 {
-                    "name": "POST Full Quote",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "full-quote",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/full-quote"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"customer\":{\"brand\":\"Sundays UK\",\"dateOfBirth\":\"1999-12-31\",\"firstName\":\"John\",\"lastName\":\"Smith\",\"contactNumber\":\"2124561234\",\"email\":\"john.smith.x@test.com\",\"personalInfoUse\":false,\"address\":{\"line1\":\"Flat 7\",\"line2\":\"quo\",\"town\":\"London\",\"province\":\"London\",\"postal_code\":\"NW10 9BA\"}},\"policy\":{\"product\":\"Sundays UK\",\"policyType\":\"BC\",\"channel\":\"{{YOUR_CHANNEL}\",\"policyStartDate\":\"2023-02-14\",\"excess\":200,\"Insurable\":[{\"value\":\"2000\",\"type\":\"Bike\",\"bikeType\":\"Road Bike\",\"bikeMake\":\"Specialized\",\"storage\":\"Other\",\"bikeModel\":\"S-Works SL7\",\"bikeYear\":\"2018\"}]}}"
-                        },
-                        "description": "<aside>Use this endpoint if you have customer and bike information available.<\/aside>\n\n The request is made to one of the following URLS:\n\n * Churchill Dev: https:\/\/api-ext-dev.twothreebird.com\/tpq\/churchill\/create-quote\n * Churchill Prod: https:\/\/api-ext.twothreebird.com\/tpq\/churchill\/create-quote\n * Sundays US Dev: https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/v1\/tpq\n * Sundays US Prod: https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/live\/tpq\n * Sundays UK Dev: https:\/\/api-ext-dev.twothreebird.com\/tpq\/sundays-uk\/create-quote\n * Sundays UK Prod: https:\/\/api-ext.twothreebird.com\/tpq\/sundays-uk\/create-quote\n\n The response provides estimated monthly and annual premiums.\n The response also contains a \"tpq\" value which is used to generate the customer redirect URL. This TPQ is used to generate\n the redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.\n\n * Churchill Dev: https:\/\/dev-churchill.dlg.twothreebird.com\/tpq\/{TPQ}\n * Churchill Prod: https:\/\/churchill.dlg.twothreebird.com\/tpq\/{TPQ}\n * Sundays US Dev: https:\/\/dev-quote.sus.twothreebird.com\/ql?tpq={TPQ}\n * Sundays US Prod: https:\/\/quote.sundaysinsurance.com\/ql\/tpq\/{TPQ}\n * Sundays UK Dev: https:\/\/sundays.uk.23bird.dev\/quote\/tpq\/{TPQ}\n * Sundays UK Prod: https:\/\/quote.sundaysinsurance.co.uk\/quote\/tpq\/{TPQ}"
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":{\"type\":\"Policy\",\"attributes\":{\"annualPremium\":98.64,\"monthlyPremium\":8.22,\"tpq\":\"9abc28f7a9ecb9e195487d70be34f49472c74621d659\"}}}",
-                            "name": ""
-                        }
-                    ]
+                  "key": "cache-control",
+                  "value": "no-cache, private"
                 },
                 {
-                    "name": "POST Abbreviated Quote",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "abbreviated-quote",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/abbreviated-quote"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"policy\":{\"product\":\"Sundays US\",\"channel\":\"{{YOUR_CHANNEL}\",\"bike\":{\"value\":\"2000\",\"type\":\"Road Bike\",\"make\":\"Specialized\",\"year\":\"2023\",\"serial\":\"XYZ-123\",\"model\":\"S-Works SL7\",\"isElectric\":false}}}"
-                        },
-                        "description": "<aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer information.<\/aside>\nThe response provides estimated monthly and annual premiums.\n\nThe request is made to one of the following URLS:\n  * Sundays US Dev: https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/v1\/create-quote\n  * Sundays US Prod: https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/live\/create-quote\n\nThe response provides estimated monthly and annual premiums.\nThe response also contains a \"tpq\" value which is used to generate the customer redirect URL. This TPQ is used to generate\nthe redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.\n\n  * Sundays US Dev: https:\/\/dev-quote.sus.twothreebird.com\/ql?tpq={TPQ}\n  * Sundays US Prod: https:\/\/quote.sundaysinsurance.com\/ql\/tpq\/{TPQ}"
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":{\"type\":\"Policy\",\"attributes\":{\"annualPremium\":132,\"monthlyPremium\":11,\"tpq\":\"157bb4bfb68ddb5b2ec838db3e329f7781eff02461dc\"}}}",
-                            "name": ""
-                        }
-                    ]
+                  "key": "content-type",
+                  "value": "application\/json"
                 }
-            ]
-        }
-    ],
-    "auth": {
-        "type": "apikey",
-        "apikey": [
-            {
-                "key": "in",
-                "value": "header",
-                "type": "string"
-            },
-            {
-                "key": "key",
-                "value": "x-api-key",
-                "type": "string"
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"type\":\"Policy\",\"attributes\":{\"annualPremium\":98.64,\"monthlyPremium\":8.22,\"tpq\":\"9abc28f7a9ecb9e195487d70be34f49472c74621d659\"}}}",
+              "name": ""
             }
-        ]
+          ]
+        },
+        {
+          "name": "POST Abbreviated Quote",
+          "request": {
+            "url": {
+              "host": "{{baseUrl}}",
+              "path": "abbreviated-quote",
+              "query": [],
+              "raw": "{{baseUrl}}\/abbreviated-quote"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application\/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application\/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"policy\":{\"product\":\"Sundays US\",\"channel\":\"{{YOUR_CHANNEL}\",\"bike\":{\"value\":\"2000\",\"type\":\"Road Bike\",\"make\":\"Specialized\",\"year\":\"2023\",\"serial\":\"XYZ-123\",\"model\":\"S-Works SL7\",\"isElectric\":false}}}"
+            },
+            "description": "<aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer information.<\/aside>\nThe response provides estimated monthly and annual premiums.\n\nThe request is made to one of the following URLS:\n  * Sundays US Dev: https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/v1\/create-quote\n  * Sundays US Prod: https:\/\/9tr26jbq04.execute-api.us-west-1.amazonaws.com\/live\/create-quote\n\nThe response provides estimated monthly and annual premiums.\nThe response also contains a \"tpq\" value which is used to generate the customer redirect URL. This TPQ is used to generate\nthe redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.\n\n  * Sundays US Dev: https:\/\/dev-quote.sus.twothreebird.com\/ql?tpq={TPQ}\n  * Sundays US Prod: https:\/\/quote.sundaysinsurance.com\/ql\/tpq\/{TPQ}"
+          },
+          "response": [
+            {
+              "header": [
+                {
+                  "key": "cache-control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "content-type",
+                  "value": "application\/json"
+                }
+              ],
+              "code": 200,
+              "body": "{\"data\":{\"type\":\"Policy\",\"attributes\":{\"annualPremium\":132,\"monthlyPremium\":11,\"tpq\":\"157bb4bfb68ddb5b2ec838db3e329f7781eff02461dc\"}}}",
+              "name": ""
+            }
+          ]
+        }
+      ]
     }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      },
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      }
+    ]
+  }
 }

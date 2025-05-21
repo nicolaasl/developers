@@ -21,11 +21,22 @@
 
     <style id="language-style">
         /* starts out as display none and is replaced with js later  */
-                    body .content .php-example code { display: none; }
-                    body .content .bash-example code { display: none; }
-                    body .content .python-example code { display: none; }
-                    body .content .javascript-example code { display: none; }
-            </style>
+        body .content .php-example code {
+            display: none;
+        }
+
+        body .content .bash-example code {
+            display: none;
+        }
+
+        body .content .python-example code {
+            display: none;
+        }
+
+        body .content .javascript-example code {
+            display: none;
+        }
+    </style>
 
 
     <script src="js/theme-default-4.40.0.js"></script>
@@ -41,48 +52,48 @@
     </span>
 </a>
 <div class="tocify-wrapper">
-    
-            <div class="lang-selector">
-                                            <button type="button" class="lang-button" data-language-name="php">php</button>
-                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
-                                            <button type="button" class="lang-button" data-language-name="python">python</button>
-                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
-                    </div>
-    
+
+    <div class="lang-selector">
+        <button type="button" class="lang-button" data-language-name="php">php</button>
+        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+        <button type="button" class="lang-button" data-language-name="python">python</button>
+        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+    </div>
+
     <div class="search">
         <input type="text" class="search" id="input-search" placeholder="Search">
     </div>
 
     <div id="toc">
-                    <ul id="tocify-header-introduction" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="introduction">
-                    <a href="#introduction">Introduction</a>
+        <ul id="tocify-header-introduction" class="tocify-header">
+            <li class="tocify-item level-1" data-unique="introduction">
+                <a href="#introduction">Introduction</a>
+            </li>
+        </ul>
+        <ul id="tocify-header-authenticating-requests" class="tocify-header">
+            <li class="tocify-item level-1" data-unique="authenticating-requests">
+                <a href="#authenticating-requests">Authenticating requests</a>
+            </li>
+        </ul>
+        <ul id="tocify-header-quote-endpoints" class="tocify-header">
+            <li class="tocify-item level-1" data-unique="quote-endpoints">
+                <a href="#quote-endpoints">Quote endpoints</a>
+            </li>
+            <ul id="tocify-subheader-quote-endpoints" class="tocify-subheader">
+                <li class="tocify-item level-2" data-unique="quote-endpoints-POSTfull-quote">
+                    <a href="#quote-endpoints-POSTfull-quote">POST Full Quote</a>
                 </li>
-                            </ul>
-                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="authenticating-requests">
-                    <a href="#authenticating-requests">Authenticating requests</a>
+                <li class="tocify-item level-2" data-unique="quote-endpoints-POSTabbreviated-quote">
+                    <a href="#quote-endpoints-POSTabbreviated-quote">POST Abbreviated Quote</a>
                 </li>
-                            </ul>
-                    <ul id="tocify-header-quote-endpoints" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="quote-endpoints">
-                    <a href="#quote-endpoints">Quote endpoints</a>
-                </li>
-                                    <ul id="tocify-subheader-quote-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="quote-endpoints-POSTfull-quote">
-                                <a href="#quote-endpoints-POSTfull-quote">POST Full Quote</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="quote-endpoints-POSTabbreviated-quote">
-                                <a href="#quote-endpoints-POSTabbreviated-quote">POST Abbreviated Quote</a>
-                            </li>
-                                                                        </ul>
-                            </ul>
-            </div>
+            </ul>
+        </ul>
+    </div>
 
     <ul class="toc-footer" id="toc-footer">
-                    <li style="padding-bottom: 5px;"><a href="collection.json">View Postman collection</a></li>
-                            <li style="padding-bottom: 5px;"><a href="openapi.yaml">View OpenAPI spec</a></li>
-        
+        <li style="padding-bottom: 5px;"><a href="collection.json">View Postman collection</a></li>
+        <li style="padding-bottom: 5px;"><a href="openapi.yaml">View OpenAPI spec</a></li>
+
     </ul>
 
     <ul class="toc-footer" id="last-updated">
@@ -94,73 +105,92 @@
     <div class="dark-box"></div>
     <div class="content">
         <h1 id="introduction">Introduction</h1>
-<aside>
-    <strong>Base URL</strong>: <code>http://{Product & region specific url}/</code>
-</aside>
-<p>This documentation aims to provide all the information you need to work with our API.</p>
-<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
-You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+        <aside>
+            <strong>Base URL</strong>: <code>http://{Product & region specific url}/</code>
+        </aside>
+        <p>This documentation aims to provide all the information you need to work with our API.</p>
+        <aside>As you scroll, you'll see code examples for working with the API in different programming languages in
+            the dark area to the right (or as part of the content on mobile).
+            You can switch the language used with the tabs at the top right (or from the nav menu at the top left on
+            mobile).
+        </aside>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>To authenticate requests, include a <strong><code>x-api-key</code></strong> header with the value <strong><code>"{YOUR_AUTH_KEY}"</code></strong>.</p>
-<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
-<p>Your API key and channel will be provided to you by TTB.</p>
+        <p>To authenticate requests, include a <strong><code>x-api-key</code></strong> header with the value
+            <strong><code>"{YOUR_AUTH_KEY}"</code></strong>.</p>
+        <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation
+            below.</p>
+        <p>Your API key and channel will be provided to you by TTB.</p>
 
         <h1 id="quote-endpoints">Quote endpoints</h1>
 
-    <p>Endpoints for generating quotes</p>
+        <p>Endpoints for generating quotes</p>
 
-                                <h2 id="quote-endpoints-POSTfull-quote">POST Full Quote</h2>
+        <h2 id="quote-endpoints-POSTfull-quote">POST Full Quote</h2>
 
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
+        <p>
+            <small class="badge badge-darkred">requires authentication</small>
+        </p>
 
-<aside>Use this endpoint if you have customer and bike information available.</aside>
-<p>The request is made to one of the following URLS:</p>
-<ul>
-<li>
-<p>Churchill Dev: <a href="https://api-ext-dev.twothreebird.com/tpq/churchill/create-quote">https://api-ext-dev.twothreebird.com/tpq/churchill/create-quote</a></p>
-</li>
-<li>
-<p>Churchill Prod: <a href="https://api-ext.twothreebird.com/tpq/churchill/create-quote">https://api-ext.twothreebird.com/tpq/churchill/create-quote</a></p>
-</li>
-<li>
-<p>Sundays US Dev: <a href="https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq">https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq</a></p>
-</li>
-<li>
-<p>Sundays US Prod: <a href="https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/tpq">https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/tpq</a></p>
-</li>
-<li>
-<p>Sundays UK Dev: <a href="https://api-ext-dev.twothreebird.com/tpq/sundays-uk/create-quote">https://api-ext-dev.twothreebird.com/tpq/sundays-uk/create-quote</a></p>
-</li>
-<li>
-<p>Sundays UK Prod: <a href="https://api-ext.twothreebird.com/tpq/sundays-uk/create-quote">https://api-ext.twothreebird.com/tpq/sundays-uk/create-quote</a></p>
-<p>The response provides estimated monthly and annual premiums.
-The response also contains a &quot;tpq&quot; value which is used to generate the customer redirect URL. This TPQ is used to generate
-the redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.</p>
-</li>
-<li>
-<p>Churchill Dev: <a href="https://dev-churchill.dlg.twothreebird.com/tpq/{TPQ">https://dev-churchill.dlg.twothreebird.com/tpq/{TPQ</a>}</p>
-</li>
-<li>
-<p>Churchill Prod: <a href="https://churchill.dlg.twothreebird.com/tpq/{TPQ">https://churchill.dlg.twothreebird.com/tpq/{TPQ</a>}</p>
-</li>
-<li>
-<p>Sundays US Dev: <a href="https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ">https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ</a>}</p>
-</li>
-<li>
-<p>Sundays US Prod: <a href="https://quote.sundaysinsurance.com/ql/tpq/{TPQ">https://quote.sundaysinsurance.com/ql/tpq/{TPQ</a>}</p>
-</li>
-<li>
-<p>Sundays UK Dev: <a href="https://sundays.uk.23bird.dev/quote/tpq/{TPQ">https://sundays.uk.23bird.dev/quote/tpq/{TPQ</a>}</p>
-</li>
-<li>
-<p>Sundays UK Prod: <a href="https://quote.sundaysinsurance.co.uk/quote/tpq/{TPQ">https://quote.sundaysinsurance.co.uk/quote/tpq/{TPQ</a>}</p>
-</li>
-</ul>
+        <aside>Use this endpoint if you have customer and bike information available.</aside>
+        <p>The request is made to one of the following URLS:</p>
+        <ul>
+            <li>
+                <p>Churchill Dev: <a href="https://api-ext-dev.twothreebird.com/tpq/churchill/create-quote">https://api-ext-dev.twothreebird.com/tpq/churchill/create-quote</a>
+                </p>
+            </li>
+            <li>
+                <p>Churchill Prod: <a href="https://api-ext.twothreebird.com/tpq/churchill/create-quote">https://api-ext.twothreebird.com/tpq/churchill/create-quote</a>
+                </p>
+            </li>
+            <li>
+                <p>Sundays US Dev: <a href="https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq">https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/tpq</a>
+                </p>
+            </li>
+            <li>
+                <p>Sundays US Prod: <a href="https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/tpq">https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/tpq</a>
+                </p>
+            </li>
+            <li>
+                <p>Sundays UK Dev: <a href="https://api-ext-dev.twothreebird.com/tpq/sundays-uk/create-quote">https://api-ext-dev.twothreebird.com/tpq/sundays-uk/create-quote</a>
+                </p>
+            </li>
+            <li>
+                <p>Sundays UK Prod: <a href="https://api-ext.twothreebird.com/tpq/sundays-uk/create-quote">https://api-ext.twothreebird.com/tpq/sundays-uk/create-quote</a>
+                </p>
+                <p>The response provides estimated monthly and annual premiums.
+                    The response also contains a &quot;tpq&quot; value which is used to generate the customer redirect
+                    URL. This TPQ is used to generate
+                    the redirect URL for the customer. Replace {TPQ} with the received TPQ for the following
+                    environments.</p>
+            </li>
+            <li>
+                <p>Churchill Dev: <a href="https://dev-churchill.dlg.twothreebird.com/tpq/{TPQ">https://dev-churchill.dlg.twothreebird.com/tpq/{TPQ</a>}
+                </p>
+            </li>
+            <li>
+                <p>Churchill Prod: <a href="https://churchill.dlg.twothreebird.com/tpq/{TPQ">https://churchill.dlg.twothreebird.com/tpq/{TPQ</a>}
+                </p>
+            </li>
+            <li>
+                <p>Sundays US Dev: <a href="https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ">https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ</a>}
+                </p>
+            </li>
+            <li>
+                <p>Sundays US Prod: <a href="https://quote.sundaysinsurance.com/ql/tpq/{TPQ">https://quote.sundaysinsurance.com/ql/tpq/{TPQ</a>}
+                </p>
+            </li>
+            <li>
+                <p>Sundays UK Dev: <a href="https://sundays.uk.23bird.dev/quote/tpq/{TPQ">https://sundays.uk.23bird.dev/quote/tpq/{TPQ</a>}
+                </p>
+            </li>
+            <li>
+                <p>Sundays UK Prod: <a href="https://quote.sundaysinsurance.co.uk/quote/tpq/{TPQ">https://quote.sundaysinsurance.co.uk/quote/tpq/{TPQ</a>}
+                </p>
+            </li>
+        </ul>
 
-<span id="example-requests-POSTfull-quote">
+        <span id="example-requests-POSTfull-quote">
 <blockquote>Example request:</blockquote>
 
 
@@ -369,7 +399,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTfull-quote">
+        <span id="example-responses-POSTfull-quote">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -393,14 +423,14 @@ content-type: application/json
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTfull-quote" hidden>
+        <span id="execution-results-POSTfull-quote" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTfull-quote"></span>:
+            id="execution-response-status-POSTfull-quote"></span>:
     </blockquote>
     <pre class="json"><code id="execution-response-content-POSTfull-quote"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+                            data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTfull-quote" hidden>
+        <span id="execution-error-POSTfull-quote" hidden>
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-POSTfull-quote">
 
@@ -408,429 +438,612 @@ Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTfull-quote" data-method="POST"
-      data-path="full-quote"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTfull-quote', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
+        <form id="form-POSTfull-quote" data-method="POST"
+              data-path="full-quote"
+              data-authed="1"
+              data-hasfiles="0"
+              data-isarraybody="0"
+              autocomplete="off"
+              onsubmit="event.preventDefault(); executeTryOut('POSTfull-quote', this);">
+            <h3>
+                Request&nbsp;&nbsp;&nbsp;
             </h3>
             <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>full-quote</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
+                <small class="badge badge-black">POST</small>
+                <b><code>full-quote</code></b>
+            </p>
+            <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+            <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>x-api-key</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
+                &nbsp;
+                &nbsp;
                 <input type="text" style="display: none"
-                              name="x-api-key" class="auth-value"               data-endpoint="POSTfull-quote"
-               value="{YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+                       name="x-api-key" class="auth-value" data-endpoint="POSTfull-quote"
+                       value="{YOUR_AUTH_KEY}"
+                       data-component="header">
+                <br>
+                <p>Example: <code>{YOUR_AUTH_KEY}</code></p>
             </div>
-                                <div style="padding-left: 28px; clear: unset;">
+            <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
+                &nbsp;
+                &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTfull-quote"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
+                       name="Content-Type" data-endpoint="POSTfull-quote"
+                       value="application/json"
+                       data-component="header">
+                <br>
+                <p>Example: <code>application/json</code></p>
             </div>
-                                <div style="padding-left: 28px; clear: unset;">
+            <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
+                &nbsp;
+                &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTfull-quote"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
+                       name="Accept" data-endpoint="POSTfull-quote"
+                       value="application/json"
+                       data-component="header">
+                <br>
+                <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-        <details>
-            <summary style="padding-bottom: 10px;">
-                <b style="line-height: 2;"><code>customer</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
- &nbsp;
-<br>
+            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+            <div style=" padding-left: 28px;  clear: unset;">
+                <details>
+                    <summary style="padding-bottom: 10px;">
+                        <b style="line-height: 2;"><code>customer</code></b>&nbsp;&nbsp;
+                        <small>object</small>&nbsp;
+                        &nbsp;
+                        <br>
 
-            </summary>
-                                                <div style="margin-left: 14px; clear: unset;">
+                    </summary>
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>brand</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.brand"                data-endpoint="POSTfull-quote"
-               value="Sundays UK"
-               data-component="body">
-    <br>
-<p>The Brand to which the customer belongs. Available options: <ul><li>Sundays US</li><li>Sundays UK</li><li>Churchill</li></ul> Example: <code>Sundays UK</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="customer.brand" data-endpoint="POSTfull-quote"
+                               value="Sundays UK"
+                               data-component="body">
+                        <br>
+                        <p>The Brand to which the customer belongs. Available options:
+                        <ul>
+                            <li>Sundays US</li>
+                            <li>Sundays UK</li>
+                            <li>Churchill</li>
+                        </ul>
+                        Example: <code>Sundays UK</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>dateOfBirth</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.dateOfBirth"                data-endpoint="POSTfull-quote"
-               value="1999-12-31"
-               data-component="body">
-    <br>
-<p>The customer date of birth in YYYY-MM-DD format. Age must be equal or greater than 18. Example: <code>1999-12-31</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="customer.dateOfBirth" data-endpoint="POSTfull-quote"
+                               value="1999-12-31"
+                               data-component="body">
+                        <br>
+                        <p>The customer date of birth in YYYY-MM-DD format. Age must be equal or greater than 18.
+                            Example: <code>1999-12-31</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>firstName</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.firstName"                data-endpoint="POSTfull-quote"
-               value="John"
-               data-component="body">
-    <br>
-<p>The customer's first name. Example: <code>John</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="customer.firstName" data-endpoint="POSTfull-quote"
+                               value="John"
+                               data-component="body">
+                        <br>
+                        <p>The customer's first name. Example: <code>John</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>lastName</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.lastName"                data-endpoint="POSTfull-quote"
-               value="Smith"
-               data-component="body">
-    <br>
-<p>The customer's last name. Example: <code>Smith</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="customer.lastName" data-endpoint="POSTfull-quote"
+                               value="Smith"
+                               data-component="body">
+                        <br>
+                        <p>The customer's last name. Example: <code>Smith</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>contactNumber</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.contactNumber"                data-endpoint="POSTfull-quote"
-               value="2124561234"
-               data-component="body">
-    <br>
-<p>The customer's contact number. Example: <code>2124561234</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="customer.contactNumber" data-endpoint="POSTfull-quote"
+                               value="2124561234"
+                               data-component="body">
+                        <br>
+                        <p>The customer's contact number. Example: <code>2124561234</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
-<small>email</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.email"                data-endpoint="POSTfull-quote"
-               value="john.smith.x@test.com"
-               data-component="body">
-    <br>
-<p>The customer's email address. Example: <code>john.smith.x@test.com</code></p>
+                        <small>email</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="customer.email" data-endpoint="POSTfull-quote"
+                               value="john.smith.x@test.com"
+                               data-component="body">
+                        <br>
+                        <p>The customer's email address. Example: <code>john.smith.x@test.com</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>personalInfoUse</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
-                <label data-endpoint="POSTfull-quote" style="display: none">
-            <input type="radio" name="customer.personalInfoUse"
-                   value="true"
-                   data-endpoint="POSTfull-quote"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="POSTfull-quote" style="display: none">
-            <input type="radio" name="customer.personalInfoUse"
-                   value="false"
-                   data-endpoint="POSTfull-quote"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Whether the customer has agreed that personal info may be used to contact them regarding their quote. Example: <code>false</code></p>
+                        <small>boolean</small>&nbsp;
+                        <i>optional</i> &nbsp;
+                        <label data-endpoint="POSTfull-quote" style="display: none">
+                            <input type="radio" name="customer.personalInfoUse"
+                                   value="true"
+                                   data-endpoint="POSTfull-quote"
+                                   data-component="body">
+                            <code>true</code>
+                        </label>
+                        <label data-endpoint="POSTfull-quote" style="display: none">
+                            <input type="radio" name="customer.personalInfoUse"
+                                   value="false"
+                                   data-endpoint="POSTfull-quote"
+                                   data-component="body">
+                            <code>false</code>
+                        </label>
+                        <br>
+                        <p>Whether the customer has agreed that personal info may be used to contact them regarding
+                            their quote. Example: <code>false</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>state</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.state"                data-endpoint="POSTfull-quote"
-               value=""
-               data-component="body">
-    <br>
-<p>The customer's 2 letter state <br />Required when creating quotes for Sundays US.</p>
+                        <small>string</small>&nbsp;
+                        <i>optional</i> &nbsp;
+                        <input type="text" style="display: none"
+                               name="customer.state" data-endpoint="POSTfull-quote"
+                               value=""
+                               data-component="body">
+                        <br>
+                        <p>The customer's 2 letter state <br/>Required when creating quotes for Sundays US.</p>
                     </div>
-                                                                <div style=" margin-left: 14px; clear: unset;">
-        <details>
-            <summary style="padding-bottom: 10px;">
-                <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
- &nbsp;
-<br>
+                    <div style=" margin-left: 14px; clear: unset;">
+                        <details>
+                            <summary style="padding-bottom: 10px;">
+                                <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
+                                <small>object</small>&nbsp;
+                                &nbsp;
+                                <br>
 
-            </summary>
-                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>line1</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.address.line1"                data-endpoint="POSTfull-quote"
-               value="Flat 7"
-               data-component="body">
-    <br>
-<p>The first line of the customer's address. Example: <code>Flat 7</code></p>
+                            </summary>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>line1</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="customer.address.line1" data-endpoint="POSTfull-quote"
+                                       value="Flat 7"
+                                       data-component="body">
+                                <br>
+                                <p>The first line of the customer's address. Example: <code>Flat 7</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>line2</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <input type="text" style="display: none"
+                                       name="customer.address.line2" data-endpoint="POSTfull-quote"
+                                       value="quo"
+                                       data-component="body">
+                                <br>
+                                <p>The second line of the customer's address. 25 Church Road Example: <code>quo</code>
+                                </p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>town</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="customer.address.town" data-endpoint="POSTfull-quote"
+                                       value="London"
+                                       data-component="body">
+                                <br>
+                                <p>The town of the customer's address. Example: <code>London</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>province</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="customer.address.province" data-endpoint="POSTfull-quote"
+                                       value="London"
+                                       data-component="body">
+                                <br>
+                                <p>The province/county/state of the customer's address. Example: <code>London</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>postal_code</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="customer.address.postal_code" data-endpoint="POSTfull-quote"
+                                       value="NW10 9BA"
+                                       data-component="body">
+                                <br>
+                                <p>The postal code of the customer's address. Example: <code>NW10 9BA</code></p>
+                            </div>
+                        </details>
                     </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>line2</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.address.line2"                data-endpoint="POSTfull-quote"
-               value="quo"
-               data-component="body">
-    <br>
-<p>The second line of the customer's address. 25 Church Road Example: <code>quo</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>town</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.address.town"                data-endpoint="POSTfull-quote"
-               value="London"
-               data-component="body">
-    <br>
-<p>The town of the customer's address. Example: <code>London</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>province</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.address.province"                data-endpoint="POSTfull-quote"
-               value="London"
-               data-component="body">
-    <br>
-<p>The province/county/state of the customer's address. Example: <code>London</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>postal_code</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="customer.address.postal_code"                data-endpoint="POSTfull-quote"
-               value="NW10 9BA"
-               data-component="body">
-    <br>
-<p>The postal code of the customer's address. Example: <code>NW10 9BA</code></p>
-                    </div>
-                                    </details>
-        </div>
-                                        </details>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-        <details>
-            <summary style="padding-bottom: 10px;">
-                <b style="line-height: 2;"><code>policy</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
- &nbsp;
-<br>
+                </details>
+            </div>
+            <div style=" padding-left: 28px;  clear: unset;">
+                <details>
+                    <summary style="padding-bottom: 10px;">
+                        <b style="line-height: 2;"><code>policy</code></b>&nbsp;&nbsp;
+                        <small>object</small>&nbsp;
+                        &nbsp;
+                        <br>
 
-            </summary>
-                                                <div style="margin-left: 14px; clear: unset;">
+                    </summary>
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>product</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.product"                data-endpoint="POSTfull-quote"
-               value="Sundays UK"
-               data-component="body">
-    <br>
-<p>The Product to which the policy will belong.<br />Available options: <ul><li>Sundays US</li><li>Sundays UK</li><li>Churchill</li></ul> Example: <code>Sundays UK</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="policy.product" data-endpoint="POSTfull-quote"
+                               value="Sundays UK"
+                               data-component="body">
+                        <br>
+                        <p>The Product to which the policy will belong.<br/>Available options:
+                        <ul>
+                            <li>Sundays US</li>
+                            <li>Sundays UK</li>
+                            <li>Churchill</li>
+                        </ul>
+                        Example: <code>Sundays UK</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>policyType</code></b>&nbsp;&nbsp;
-<small>in:BC,C,B,V,I</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.policyType"                data-endpoint="POSTfull-quote"
-               value="BC"
-               data-component="body">
-    <br>
-<p>The policy type (BC: Bicycle &amp; Cyclist, B: Bicycle, C: Cyclist, V: Vehicle, I: Insurer). Example: <code>BC</code></p>
+                        <small>in:BC,C,B,V,I,T</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="policy.policyType" data-endpoint="POSTfull-quote"
+                               value="BC"
+                               data-component="body">
+                        <br>
+                        <p>The policy type (BC: Bicycle &amp; Cyclist, B: Bicycle, C: Cyclist, V: Vehicle, I: Insurer,
+                            T: Theft Only). Example: <code>BC</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.channel"                data-endpoint="POSTfull-quote"
-               value="{{YOUR_CHANNEL}"
-               data-component="body">
-    <br>
-<p>Your channel name (provided by TTB). Example: <code>{{YOUR_CHANNEL}</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="policy.channel" data-endpoint="POSTfull-quote"
+                               value="{{YOUR_CHANNEL}"
+                               data-component="body">
+                        <br>
+                        <p>Your channel name (provided by TTB). Example: <code>{{YOUR_CHANNEL}</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>policyStartDate</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.policyStartDate"                data-endpoint="POSTfull-quote"
-               value="2023-02-14"
-               data-component="body">
-    <br>
-<p>The proposed start date for the policy in YYYY-MM-DD format. Example: <code>2023-02-14</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="policy.policyStartDate" data-endpoint="POSTfull-quote"
+                               value="2023-02-14"
+                               data-component="body">
+                        <br>
+                        <p>The proposed start date for the policy in YYYY-MM-DD format. Example: <code>2023-02-14</code>
+                        </p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>excess</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="policy.excess"                data-endpoint="POSTfull-quote"
-               value="200"
-               data-component="body">
-    <br>
-<p>The excess for the policy. <br />Available options: <ul><li>Sundays US<ul><li>150</li><li>250</li><li>350</li></ul></li><li>Sundays UK:<ul><li>50</li><li>100</li><li>200</li></ul></li></ul> Example: <code>200</code></p>
+                        <small>integer</small>&nbsp;
+                        &nbsp;
+                        <input type="number" style="display: none"
+                               step="any" name="policy.excess" data-endpoint="POSTfull-quote"
+                               value="200"
+                               data-component="body">
+                        <br>
+                        <p>The excess for the policy. <br/>Available options:
+                        <ul>
+                            <li>Sundays US
+                                <ul>
+                                    <li>150</li>
+                                    <li>250</li>
+                                    <li>350</li>
+                                </ul>
+                            </li>
+                            <li>Sundays UK:
+                                <ul>
+                                    <li>50</li>
+                                    <li>100</li>
+                                    <li>200</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        Example: <code>200</code></p>
                     </div>
-                                                                <div style=" margin-left: 14px; clear: unset;">
-        <details>
-            <summary style="padding-bottom: 10px;">
-                <b style="line-height: 2;"><code>Insurable</code></b>&nbsp;&nbsp;
-<small>object[]</small>&nbsp;
- &nbsp;
-<br>
+                    <div style="margin-left: 14px; clear: unset;">
+                        <b style="line-height: 2;"><code>theftOnly</code></b>&nbsp;&nbsp;
+                        <small>boolean</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="policy.theftOnly" data-endpoint="POSTfull-quote"
+                               value="0"
+                               data-component="body">
+                        <br>
+                        <p>True if the policy only covers theft of bike(s)</p>
+                    </div>
+                    <div style=" margin-left: 14px; clear: unset;">
+                        <details>
+                            <summary style="padding-bottom: 10px;">
+                                <b style="line-height: 2;"><code>Insurable</code></b>&nbsp;&nbsp;
+                                <small>object[]</small>&nbsp;
+                                &nbsp;
+                                <br>
 
-            </summary>
-                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
-<small>numeric</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.Insurable.0.value"                data-endpoint="POSTfull-quote"
-               value="2000"
-               data-component="body">
-    <br>
-<p>The value of the insurable.<ul><li>Bike:<ul><li>Sundays UK</li><ul><li>Minimum: 250</li><li>Maximum: 15000</li></ul><li>Sundays US</li><ul><li>Minimum: 300</li><li>Maximum: 21500</li></ul><li>Churchill</li><ul><li>Minimum: 250</li><li>Maximum: 15000</li></ul></ul></li><li>Accessories:<ul><li>Sundays UK</li><ul><li>Minimum: 10</li><li>Maximum: 5000</li></ul><li>Sundays US</li><ul><li>Minimum: 150</li><li>Maximum: 1000</li></ul><li>Churchill</li><ul><li>Minimum: 250</li><li>Maximum: 1000</li></ul></ul></li><li>Wheelset:<ul><li>Sundays UK</li><ul><li>Minimum: 10</li><li>Maximum: 5000</li></ul><li>Sundays US</li><ul><li>Minimum: 150</li><li>Maximum: 5000</li></ul></ul></li></ul> <br />Required when specifying &quot;Accessories&quot;, &quot;Bike&quot; or &quot;Wheelset&quot; as type being created. Example: <code>2000</code></p>
+                            </summary>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
+                                <small>numeric</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.Insurable.0.value" data-endpoint="POSTfull-quote"
+                                       value="2000"
+                                       data-component="body">
+                                <br>
+                                <p>The value of the insurable.
+                                <ul>
+                                    <li>Bike:
+                                        <ul>
+                                            <li>Sundays UK</li>
+                                            <ul>
+                                                <li>Minimum: 250</li>
+                                                <li>Maximum: 15000</li>
+                                            </ul>
+                                            <li>Sundays US</li>
+                                            <ul>
+                                                <li>Minimum: 300</li>
+                                                <li>Maximum: 21500</li>
+                                            </ul>
+                                            <li>Churchill</li>
+                                            <ul>
+                                                <li>Minimum: 250</li>
+                                                <li>Maximum: 15000</li>
+                                            </ul>
+                                        </ul>
+                                    </li>
+                                    <li>Accessories:
+                                        <ul>
+                                            <li>Sundays UK</li>
+                                            <ul>
+                                                <li>Minimum: 10</li>
+                                                <li>Maximum: 5000</li>
+                                            </ul>
+                                            <li>Sundays US</li>
+                                            <ul>
+                                                <li>Minimum: 150</li>
+                                                <li>Maximum: 1000</li>
+                                            </ul>
+                                            <li>Churchill</li>
+                                            <ul>
+                                                <li>Minimum: 250</li>
+                                                <li>Maximum: 1000</li>
+                                            </ul>
+                                        </ul>
+                                    </li>
+                                    <li>Wheelset:
+                                        <ul>
+                                            <li>Sundays UK</li>
+                                            <ul>
+                                                <li>Minimum: 10</li>
+                                                <li>Maximum: 5000</li>
+                                            </ul>
+                                            <li>Sundays US</li>
+                                            <ul>
+                                                <li>Minimum: 150</li>
+                                                <li>Maximum: 5000</li>
+                                            </ul>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <br/>Required when specifying &quot;Accessories&quot;, &quot;Bike&quot; or &quot;Wheelset&quot;
+                                as type being created. Example: <code>2000</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.Insurable.0.type" data-endpoint="POSTfull-quote"
+                                       value="Bike"
+                                       data-component="body">
+                                <br>
+                                <p>The type of insurable being added to the policy.<br/><i>Standard options:</i>
+                                <ul>
+                                    <li>Accessories</li>
+                                    <li>Bike</li>
+                                    <li>Cyclist Legal Cover</li>
+                                    <li>Racing</li>
+                                    <li>Worldwide travel</li>
+                                </ul>
+                                <br/> <i>Sundays UK additional options:</i>
+                                <ul>
+                                    <li>Cyclist Racing Cover</li>
+                                    <li>Cyclist Personal Liability</li>
+                                    <li>Wheelset</li>
+                                </ul>
+                                <br/><i>Sundays US additional options:</i>
+                                <ul>
+                                    <li>Cyclist Personal Injury</li>
+                                    <li>New for Old</li>
+                                    <li>Wheelset</li>
+                                </ul>
+                                <br/><i>Churchill additional options:</i>
+                                <ul>
+                                    <li>Cyclist Personal Injury</li>
+                                </ul>
+                                Example: <code>Bike</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>bikeType</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.Insurable.0.bikeType" data-endpoint="POSTfull-quote"
+                                       value="Road Bike"
+                                       data-component="body">
+                                <br>
+                                <p>The bike type.<br/>Required when specifying &quot;Bike&quot; as type being created.
+                                    <br/><i>Standard Options</i>
+                                <ul>
+                                    <li>Road Bike</li>
+                                    <li>Mountain Bike</li>
+                                    <li>Gravel Bike</li>
+                                    <li>Cargo Bike</li>
+                                    <li>Folding Bike</li>
+                                    <li>BMX</li>
+                                    <li>Track Bike</li>
+                                    <li>Other</li>
+                                </ul>
+                                <i>Sundays UK Additional Options:</i>
+                                <ul>
+                                    <li>City Bike</li>
+                                    <li>Triathlon/Time Trial</li>
+                                    <li>Hybrid Bike</li>
+                                    <li>CycloCross</li>
+                                    <li>Touring Bike</li>
+                                </ul>
+                                <i>Sundays US Additional Options:</i>
+                                <ul>
+                                    <li>Commuter Bike</li>
+                                    <li>Hybrid Bike</li>
+                                </ul>
+                                <i>Churchill Additional Options:</i>
+                                <ul>
+                                    <li>Bespoke</li>
+                                    <li>Commuter Bike</li>
+                                    <li>Cyclocross</li>
+                                    <li>Downhill</li>
+                                    <li>Electric Bike</li>
+                                    <li>Electric Cargo Bike</li>
+                                    <li>Hybrid/City Bike</li>
+                                    <li>Single Speed</li>
+                                    <li>Triathlon/Time Trial</li>
+                                </ul>
+                                Example: <code>Road Bike</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>bikeMake</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.Insurable.0.bikeMake" data-endpoint="POSTfull-quote"
+                                       value="Specialized"
+                                       data-component="body">
+                                <br>
+                                <p>The bike make. Example: <code>Specialized</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>isElectric</code></b>&nbsp;&nbsp;
+                                <small>boolean</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <label data-endpoint="POSTfull-quote" style="display: none">
+                                    <input type="radio" name="policy.Insurable.0.isElectric"
+                                           value="true"
+                                           data-endpoint="POSTfull-quote"
+                                           data-component="body">
+                                    <code>true</code>
+                                </label>
+                                <label data-endpoint="POSTfull-quote" style="display: none">
+                                    <input type="radio" name="policy.Insurable.0.isElectric"
+                                           value="false"
+                                           data-endpoint="POSTfull-quote"
+                                           data-component="body">
+                                    <code>false</code>
+                                </label>
+                                <br>
+                                <p>Whether the bike is electric or not.</p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>storage</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.Insurable.0.storage" data-endpoint="POSTfull-quote"
+                                       value="Other"
+                                       data-component="body">
+                                <br>
+                                <p>Where the bike is stored. <br/>Required when specifying &quot;Bike&quot; as type
+                                    being created and Product is &quot;Churchill&quot; or &quot;Sundays UK&quot;. <br/>Available
+                                    options:
+                                <ul>
+                                    <li>Inside my property</li>
+                                    <li>Inside my garage</li>
+                                    <li>An outbuilding on my property</li>
+                                    <li>A communal area in my property</li>
+                                    <li>Inside my wooden shed on my property</li>
+                                    <li>Inside my metal shed on my property</li>
+                                    <li>In an off-site bicycle hanger</li>
+                                    <li>Other</li>
+                                </ul>
+                                Example: <code>Other</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>bikeModel</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.Insurable.0.bikeModel" data-endpoint="POSTfull-quote"
+                                       value="S-Works SL7"
+                                       data-component="body">
+                                <br>
+                                <p>The bike model. Example: <code>S-Works SL7</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>bikeYear</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.Insurable.0.bikeYear" data-endpoint="POSTfull-quote"
+                                       value="2018"
+                                       data-component="body">
+                                <br>
+                                <p>The bike year model.<br/>Required when specifying &quot;Bike&quot; as type being
+                                    created. Example: <code>2018</code></p>
+                            </div>
+                        </details>
                     </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.Insurable.0.type"                data-endpoint="POSTfull-quote"
-               value="Bike"
-               data-component="body">
-    <br>
-<p>The type of insurable being added to the policy.<br /><i>Standard options:</i><ul><li>Accessories</li><li>Bike</li><li>Cyclist Legal Cover</li><li>Racing</li><li>Worldwide travel</li></ul><br /> <i>Sundays UK additional options:</i> <ul><li>Cyclist Racing Cover</li><li>Cyclist Personal Liability</li><li>Wheelset</li></ul> <br /><i>Sundays US additional options:</i><ul><li>Cyclist Personal Injury</li><li>New for Old</li><li>Wheelset</li></ul> <br /><i>Churchill additional options:</i><ul><li>Cyclist Personal Injury</li></ul> Example: <code>Bike</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>bikeType</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.Insurable.0.bikeType"                data-endpoint="POSTfull-quote"
-               value="Road Bike"
-               data-component="body">
-    <br>
-<p>The bike type.<br />Required when specifying &quot;Bike&quot; as type being created. <br /><i>Standard Options</i><ul><li>Road Bike</li><li>Mountain Bike</li><li>Gravel Bike</li><li>Cargo Bike</li><li>Folding Bike</li><li>BMX</li><li>Track Bike</li><li>Other</li></ul><i>Sundays UK Additional Options:</i><ul><li>City Bike</li><li>Triathlon/Time Trial</li><li>Hybrid Bike</li><li>CycloCross</li><li>Touring Bike</li></ul><i>Sundays US Additional Options:</i><ul><li>Commuter Bike</li><li>Hybrid Bike</li></ul><i>Churchill Additional Options:</i><ul><li>Bespoke</li><li>Commuter Bike</li><li>Cyclocross</li><li>Downhill</li><li>Electric Bike</li><li>Electric Cargo Bike</li><li>Hybrid/City Bike</li><li>Single Speed</li><li>Triathlon/Time Trial</li></ul> Example: <code>Road Bike</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>bikeMake</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.Insurable.0.bikeMake"                data-endpoint="POSTfull-quote"
-               value="Specialized"
-               data-component="body">
-    <br>
-<p>The bike make. Example: <code>Specialized</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>isElectric</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
-                <label data-endpoint="POSTfull-quote" style="display: none">
-            <input type="radio" name="policy.Insurable.0.isElectric"
-                   value="true"
-                   data-endpoint="POSTfull-quote"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="POSTfull-quote" style="display: none">
-            <input type="radio" name="policy.Insurable.0.isElectric"
-                   value="false"
-                   data-endpoint="POSTfull-quote"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Whether the bike is electric or not.</p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>storage</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.Insurable.0.storage"                data-endpoint="POSTfull-quote"
-               value="Other"
-               data-component="body">
-    <br>
-<p>Where the bike is stored. <br />Required when specifying &quot;Bike&quot; as type being created and Product is &quot;Churchill&quot; or &quot;Sundays UK&quot;. <br />Available options: <ul><li>Inside my property</li><li>Inside my garage</li><li>An outbuilding on my property</li><li>A communal area in my property</li><li>Inside my wooden shed on my property</li><li>Inside my metal shed on my property</li><li>In an off-site bicycle hanger</li><li>Other</li></ul> Example: <code>Other</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>bikeModel</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.Insurable.0.bikeModel"                data-endpoint="POSTfull-quote"
-               value="S-Works SL7"
-               data-component="body">
-    <br>
-<p>The bike model. Example: <code>S-Works SL7</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>bikeYear</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.Insurable.0.bikeYear"                data-endpoint="POSTfull-quote"
-               value="2018"
-               data-component="body">
-    <br>
-<p>The bike year model.<br />Required when specifying &quot;Bike&quot; as type being created. Example: <code>2018</code></p>
-                    </div>
-                                    </details>
-        </div>
-                                        </details>
-        </div>
+                </details>
+            </div>
         </form>
 
-                    <h2 id="quote-endpoints-POSTabbreviated-quote">POST Abbreviated Quote</h2>
+        <h2 id="quote-endpoints-POSTabbreviated-quote">POST Abbreviated Quote</h2>
 
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
+        <p>
+            <small class="badge badge-darkred">requires authentication</small>
+        </p>
 
-<aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer information.</aside>
-<p>The response provides estimated monthly and annual premiums.</p>
-<p>The request is made to one of the following URLS:</p>
-<ul>
-<li>Sundays US Dev: <a href="https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote">https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote</a></li>
-<li>Sundays US Prod: <a href="https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/create-quote">https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/create-quote</a></li>
-</ul>
-<p>The response provides estimated monthly and annual premiums.
-The response also contains a &quot;tpq&quot; value which is used to generate the customer redirect URL. This TPQ is used to generate
-the redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.</p>
-<ul>
-<li>Sundays US Dev: <a href="https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ">https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ</a>}</li>
-<li>Sundays US Prod: <a href="https://quote.sundaysinsurance.com/ql/tpq/{TPQ">https://quote.sundaysinsurance.com/ql/tpq/{TPQ</a>}</li>
-</ul>
+        <aside>Use this endpoint if you have bike information but do not have (or cannot collect) any customer
+            information.
+        </aside>
+        <p>The response provides estimated monthly and annual premiums.</p>
+        <p>The request is made to one of the following URLS:</p>
+        <ul>
+            <li>Sundays US Dev: <a href="https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote">https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/v1/create-quote</a>
+            </li>
+            <li>Sundays US Prod: <a href="https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/create-quote">https://9tr26jbq04.execute-api.us-west-1.amazonaws.com/live/create-quote</a>
+            </li>
+        </ul>
+        <p>The response provides estimated monthly and annual premiums.
+            The response also contains a &quot;tpq&quot; value which is used to generate the customer redirect URL. This
+            TPQ is used to generate
+            the redirect URL for the customer. Replace {TPQ} with the received TPQ for the following environments.</p>
+        <ul>
+            <li>Sundays US Dev: <a href="https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ">https://dev-quote.sus.twothreebird.com/ql?tpq={TPQ</a>}
+            </li>
+            <li>Sundays US Prod: <a href="https://quote.sundaysinsurance.com/ql/tpq/{TPQ">https://quote.sundaysinsurance.com/ql/tpq/{TPQ</a>}
+            </li>
+        </ul>
 
-<span id="example-requests-POSTabbreviated-quote">
+        <span id="example-requests-POSTabbreviated-quote">
 <blockquote>Example request:</blockquote>
 
 
@@ -955,7 +1168,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTabbreviated-quote">
+        <span id="example-responses-POSTabbreviated-quote">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -979,14 +1192,14 @@ content-type: application/json
 }</code>
  </pre>
     </span>
-<span id="execution-results-POSTabbreviated-quote" hidden>
+        <span id="execution-results-POSTabbreviated-quote" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTabbreviated-quote"></span>:
+            id="execution-response-status-POSTabbreviated-quote"></span>:
     </blockquote>
     <pre class="json"><code id="execution-response-content-POSTabbreviated-quote"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+                            data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTabbreviated-quote" hidden>
+        <span id="execution-error-POSTabbreviated-quote" hidden>
     <blockquote>Request failed with error:</blockquote>
     <pre><code id="execution-error-message-POSTabbreviated-quote">
 
@@ -994,200 +1207,221 @@ Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTabbreviated-quote" data-method="POST"
-      data-path="abbreviated-quote"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTabbreviated-quote', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
+        <form id="form-POSTabbreviated-quote" data-method="POST"
+              data-path="abbreviated-quote"
+              data-authed="1"
+              data-hasfiles="0"
+              data-isarraybody="0"
+              autocomplete="off"
+              onsubmit="event.preventDefault(); executeTryOut('POSTabbreviated-quote', this);">
+            <h3>
+                Request&nbsp;&nbsp;&nbsp;
             </h3>
             <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>abbreviated-quote</code></b>
-        </p>
-                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
+                <small class="badge badge-black">POST</small>
+                <b><code>abbreviated-quote</code></b>
+            </p>
+            <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+            <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>x-api-key</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
+                &nbsp;
+                &nbsp;
                 <input type="text" style="display: none"
-                              name="x-api-key" class="auth-value"               data-endpoint="POSTabbreviated-quote"
-               value="{YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+                       name="x-api-key" class="auth-value" data-endpoint="POSTabbreviated-quote"
+                       value="{YOUR_AUTH_KEY}"
+                       data-component="header">
+                <br>
+                <p>Example: <code>{YOUR_AUTH_KEY}</code></p>
             </div>
-                                <div style="padding-left: 28px; clear: unset;">
+            <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
+                &nbsp;
+                &nbsp;
                 <input type="text" style="display: none"
-                              name="Content-Type"                data-endpoint="POSTabbreviated-quote"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
+                       name="Content-Type" data-endpoint="POSTabbreviated-quote"
+                       value="application/json"
+                       data-component="header">
+                <br>
+                <p>Example: <code>application/json</code></p>
             </div>
-                                <div style="padding-left: 28px; clear: unset;">
+            <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
+                &nbsp;
+                &nbsp;
                 <input type="text" style="display: none"
-                              name="Accept"                data-endpoint="POSTabbreviated-quote"
-               value="application/json"
-               data-component="header">
-    <br>
-<p>Example: <code>application/json</code></p>
+                       name="Accept" data-endpoint="POSTabbreviated-quote"
+                       value="application/json"
+                       data-component="header">
+                <br>
+                <p>Example: <code>application/json</code></p>
             </div>
-                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <div style=" padding-left: 28px;  clear: unset;">
-        <details>
-            <summary style="padding-bottom: 10px;">
-                <b style="line-height: 2;"><code>policy</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
- &nbsp;
-<br>
-<p>Policy object.</p>
-            </summary>
-                                                <div style="margin-left: 14px; clear: unset;">
+            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+            <div style=" padding-left: 28px;  clear: unset;">
+                <details>
+                    <summary style="padding-bottom: 10px;">
+                        <b style="line-height: 2;"><code>policy</code></b>&nbsp;&nbsp;
+                        <small>object</small>&nbsp;
+                        &nbsp;
+                        <br>
+                        <p>Policy object.</p>
+                    </summary>
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>product</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.product"                data-endpoint="POSTabbreviated-quote"
-               value="Sundays US"
-               data-component="body">
-    <br>
-<p>The Product for which you want to generate a quote. Example: <code>Sundays US</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="policy.product" data-endpoint="POSTabbreviated-quote"
+                               value="Sundays US"
+                               data-component="body">
+                        <br>
+                        <p>The Product for which you want to generate a quote. Example: <code>Sundays US</code></p>
                     </div>
-                                                                <div style="margin-left: 14px; clear: unset;">
+                    <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>channel</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.channel"                data-endpoint="POSTabbreviated-quote"
-               value="{{YOUR_CHANNEL}"
-               data-component="body">
-    <br>
-<p>Your channel name (provided by TTB). Example: <code>{{YOUR_CHANNEL}</code></p>
+                        <small>string</small>&nbsp;
+                        &nbsp;
+                        <input type="text" style="display: none"
+                               name="policy.channel" data-endpoint="POSTabbreviated-quote"
+                               value="{{YOUR_CHANNEL}"
+                               data-component="body">
+                        <br>
+                        <p>Your channel name (provided by TTB). Example: <code>{{YOUR_CHANNEL}</code></p>
                     </div>
-                                                                <div style=" margin-left: 14px; clear: unset;">
-        <details>
-            <summary style="padding-bottom: 10px;">
-                <b style="line-height: 2;"><code>bike</code></b>&nbsp;&nbsp;
-<small>object</small>&nbsp;
- &nbsp;
-<br>
-<p>Bike object for which you want to generate a quote.</p>
-            </summary>
-                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
-<small>numeric</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.bike.value"                data-endpoint="POSTabbreviated-quote"
-               value="2000"
-               data-component="body">
-    <br>
-<p>The value of the insurable.<ul><li>Bike:<ul><li>Minimum: 300</li><li>Maximum: 21500</li></ul></li></ul> Example: <code>2000</code></p>
+                    <div style=" margin-left: 14px; clear: unset;">
+                        <details>
+                            <summary style="padding-bottom: 10px;">
+                                <b style="line-height: 2;"><code>bike</code></b>&nbsp;&nbsp;
+                                <small>object</small>&nbsp;
+                                &nbsp;
+                                <br>
+                                <p>Bike object for which you want to generate a quote.</p>
+                            </summary>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
+                                <small>numeric</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.bike.value" data-endpoint="POSTabbreviated-quote"
+                                       value="2000"
+                                       data-component="body">
+                                <br>
+                                <p>The value of the insurable.
+                                <ul>
+                                    <li>Bike:
+                                        <ul>
+                                            <li>Minimum: 300</li>
+                                            <li>Maximum: 21500</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                Example: <code>2000</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.bike.type" data-endpoint="POSTabbreviated-quote"
+                                       value="Road Bike"
+                                       data-component="body">
+                                <br>
+                                <p>The bike type of the insurable.<br/>Available options:
+                                <ul>
+                                    <li>Road Bike</li>
+                                    <li>Mountain Bike</li>
+                                    <li>Electric Bicycle</li>
+                                    <li>Cargo E-bike</li>
+                                    <li>Gravel Bike</li>
+                                    <li>Folding Bike</li>
+                                    <li>Hybrid Bike</li>
+                                    <li>BMX</li>
+                                    <li>Track Bike</li>
+                                </ul>
+                                Example: <code>Road Bike</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>make</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.bike.make" data-endpoint="POSTabbreviated-quote"
+                                       value="Specialized"
+                                       data-component="body">
+                                <br>
+                                <p>The bike make of the insurable. Must be at least 2 characters. Must not be greater
+                                    than 50 characters. Example: <code>Specialized</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>year</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.bike.year" data-endpoint="POSTabbreviated-quote"
+                                       value="2023"
+                                       data-component="body">
+                                <br>
+                                <p>The bike year model of the insurable. Example: <code>2023</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>serial</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.bike.serial" data-endpoint="POSTabbreviated-quote"
+                                       value="XYZ-123"
+                                       data-component="body">
+                                <br>
+                                <p>The serial number of the insurable. Must be at least 2 characters. Must not be
+                                    greater than 50 characters. Example: <code>XYZ-123</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>model</code></b>&nbsp;&nbsp;
+                                <small>string</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <input type="text" style="display: none"
+                                       name="policy.bike.model" data-endpoint="POSTabbreviated-quote"
+                                       value="S-Works SL7"
+                                       data-component="body">
+                                <br>
+                                <p>The bike model of the insurable. Example: <code>S-Works SL7</code></p>
+                            </div>
+                            <div style="margin-left: 28px; clear: unset;">
+                                <b style="line-height: 2;"><code>isElectric</code></b>&nbsp;&nbsp;
+                                <small>boolean</small>&nbsp;
+                                <i>optional</i> &nbsp;
+                                <label data-endpoint="POSTabbreviated-quote" style="display: none">
+                                    <input type="radio" name="policy.bike.isElectric"
+                                           value="true"
+                                           data-endpoint="POSTabbreviated-quote"
+                                           data-component="body">
+                                    <code>true</code>
+                                </label>
+                                <label data-endpoint="POSTabbreviated-quote" style="display: none">
+                                    <input type="radio" name="policy.bike.isElectric"
+                                           value="false"
+                                           data-endpoint="POSTabbreviated-quote"
+                                           data-component="body">
+                                    <code>false</code>
+                                </label>
+                                <br>
+                                <p>Whether the bike is electric or not. Example: <code>false</code></p>
+                            </div>
+                        </details>
                     </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.bike.type"                data-endpoint="POSTabbreviated-quote"
-               value="Road Bike"
-               data-component="body">
-    <br>
-<p>The bike type of the insurable.<br />Available options: <ul><li>Road Bike</li><li>Mountain Bike</li><li>Electric Bicycle</li><li>Cargo E-bike</li><li>Gravel Bike</li><li>Folding Bike</li><li>Hybrid Bike</li><li>BMX</li><li>Track Bike</li></ul> Example: <code>Road Bike</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>make</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.bike.make"                data-endpoint="POSTabbreviated-quote"
-               value="Specialized"
-               data-component="body">
-    <br>
-<p>The bike make of the insurable. Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>Specialized</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>year</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.bike.year"                data-endpoint="POSTabbreviated-quote"
-               value="2023"
-               data-component="body">
-    <br>
-<p>The bike year model of the insurable. Example: <code>2023</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>serial</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.bike.serial"                data-endpoint="POSTabbreviated-quote"
-               value="XYZ-123"
-               data-component="body">
-    <br>
-<p>The serial number of the insurable. Must be at least 2 characters. Must not be greater than 50 characters. Example: <code>XYZ-123</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>model</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="policy.bike.model"                data-endpoint="POSTabbreviated-quote"
-               value="S-Works SL7"
-               data-component="body">
-    <br>
-<p>The bike model of the insurable. Example: <code>S-Works SL7</code></p>
-                    </div>
-                                                                <div style="margin-left: 28px; clear: unset;">
-                        <b style="line-height: 2;"><code>isElectric</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
-                <label data-endpoint="POSTabbreviated-quote" style="display: none">
-            <input type="radio" name="policy.bike.isElectric"
-                   value="true"
-                   data-endpoint="POSTabbreviated-quote"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="POSTabbreviated-quote" style="display: none">
-            <input type="radio" name="policy.bike.isElectric"
-                   value="false"
-                   data-endpoint="POSTabbreviated-quote"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>Whether the bike is electric or not. Example: <code>false</code></p>
-                    </div>
-                                    </details>
-        </div>
-                                        </details>
-        </div>
+                </details>
+            </div>
         </form>
 
-            
 
-        
     </div>
     <div class="dark-box">
-                    <div class="lang-selector">
-                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
-                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
-                                                        <button type="button" class="lang-button" data-language-name="python">python</button>
-                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
-                            </div>
-            </div>
+        <div class="lang-selector">
+            <button type="button" class="lang-button" data-language-name="php">php</button>
+            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+            <button type="button" class="lang-button" data-language-name="python">python</button>
+            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+        </div>
+    </div>
 </div>
 </body>
 </html>
